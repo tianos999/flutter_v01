@@ -360,9 +360,16 @@ class _HomePageState extends State<HomePage> {
         populars.length,
         (index) => PropertyItem(
           data: populars[index],
+          onIndexChanged: _updateIndex
         ),
       ),
     );
+  }
+
+  void _updateIndex(int newIndex) {
+    setState(() {
+      widget.onIndexChanged(newIndex);
+    });
   }
 
   Widget _buildRecommended() {

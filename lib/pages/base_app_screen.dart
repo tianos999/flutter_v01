@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:snack_cart/core/constants/constants.dart';
+import 'package:snack_cart/pages/event_details.dart';
 import 'package:snack_cart/pages/explore.dart';
 import 'package:snack_cart/pages/make_payment.dart';
 import 'package:snack_cart/pages/orders.dart';
@@ -50,6 +51,11 @@ class _BaseAppScreenState extends State<BaseAppScreen> {
       "icon": Icons.add,
       "active_icon": Icons.add,
       "page": MakePaymentPage(),
+    },
+    {
+      "icon": Icons.add,
+      "active_icon": Icons.add,
+      "page": EventDetailsPage(),
     },
   ];
 

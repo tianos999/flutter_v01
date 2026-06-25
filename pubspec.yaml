@@ -67,6 +67,11 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/images/2-Storey-Modern-Minimalist-House-Design-Indonesia-1024x762.jpg
+    - assets/images/images-3.jpg
+    - assets/images/images.jpg
+    - assets/images/minimalist-house-1.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

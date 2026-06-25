@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/constants.dart';
 
 import 'custom_image.dart';
 import 'icon_box.dart';
 
 class PropertyItem extends StatelessWidget {
-  const PropertyItem({Key? key, required this.data}) : super(key: key);
 
   final data;
+  final Function(int) onIndexChanged;
+  const PropertyItem({Key? key, required this.data, required this.onIndexChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    Widget _container = Container(
       width: double.infinity,
       height: 240,
       margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
@@ -47,6 +49,13 @@ class PropertyItem extends StatelessWidget {
           ),
         ],
       ),
+    );
+
+    return GestureDetector(
+      onTap: () {
+        onIndexChanged(Constants.EVENT_DETAILS_PAGE);
+      },
+      child: _container,
     );
   }
 
