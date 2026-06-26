@@ -34,7 +34,7 @@ class _SnackCartStep01State extends State<SnackCartStep01> {
           floating: true,
           title: _buildHeader(),
         ),
-        SliverToBoxAdapter(child: _buildBody())
+        SliverToBoxAdapter(child: _buildBody1())
       ],
     );
   }
@@ -81,179 +81,166 @@ class _SnackCartStep01State extends State<SnackCartStep01> {
     );
   }
 
+  _buildBody1() {
+    return SingleChildScrollView(
+      child: Column(
+        // Main Axis for Column is Vertical (The 4 Rows)
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: List.generate(4, (rowIndex) {
+          return Row(
+            // Main Axis for Row is Horizontal (The 3 Columns)
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: List.generate(3, (colIndex) {
+              return Expanded(
+                child: Container(
+                  margin: EdgeInsets.all(4.0),
+                  color: Colors.blue[(rowIndex + colIndex + 1) * 100],
+                  height: 100,
+
+                  // Main content: Image, Title, and Price
+                  child:
+                  Container(
+                    //width: 250,
+                    padding: EdgeInsets.all(2.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20.0),
+                      border: Border.all(
+                        color: Colors.red,
+                        width: 1.0,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.05),
+                          blurRadius: 10,
+                          offset: Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        // Add Button in the top right corner
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(color: Colors.orange.withOpacity(0.3), blurRadius: 5, offset: Offset(0, 3))
+                              ],
+                            ),
+                            child: Icon(Icons.add, color: Colors.white, size: 28),
+                          ),
+                        ),
+                        // Main content: Image, Title, and Price
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.search,
+                              color: Colors.grey,
+                              size: 30.0,
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              'Snack Box',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(height: 4),
+                            Text(
+                              '\$12.99',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey[700],
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }),
+          );
+        }),
+      ),
+    );
+  }
+
   _buildBody() {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _sizedBox(),
-          _title(),
-          _sizedBox(),
-          _snackCartDraggable(),
-          _sizedBox(),
-          _snackCartDragTarget(),
-          _sizedBox(),
-          _submitPaymentButton(),
-        ],
-      ),
-    );
-  }
-
-  _title() {
-    return const Padding(
-      padding: EdgeInsets.only(left: 15),
-      child: Text(
-        "Arma tu carrito Snack",
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-      ),
-    );
-  }
-
-  _sizedBox() {
-    return const SizedBox(
-      height: 20,
-      width: double.infinity,
-      child: DecoratedBox(
+        Container(
+        width: 250,
+        padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              offset: Offset(0, 5),
+            ),
+          ],
         ),
-      ),
-    );
-  }
-
-  _submitPaymentButton() {
-    final Widget button = ElevatedButton(
-      child: const Text('Proceda con la orden'),
-      onPressed: () {
-        // This line opens the new page
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SnackCartStep03()),
-        );
-      },
-    );
-
-    return Center(
-        child: button
-    );
-  }
-
-  _snackCartDragTarget() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        DragTarget<Topping>(
-          onWillAcceptWithDetails: (details) => true,
-          onAcceptWithDetails: (details) {
-            setState(() {
-              _acceptedItems.add(details.data);
-            });
-          },
-          builder: (context, candidateData, rejectedData) {
-            return Container(
-              height: 400,
-              width: 350,
-              decoration: BoxDecoration(
-                color: candidateData.isEmpty ? Colors.grey.shade200 : Colors.green.shade200,
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.grey),
-              ),
-              child: _acceptedItems.isEmpty ? const Center(child: Text('Agregar Toppings Aqui!')) : GridView.builder(
-                padding: const EdgeInsets.all(8),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
+        child: Stack(
+          children: [
+            // Add Button in the top right corner
+            Positioned(
+              top: 0,
+              right: 0,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.orange,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(color: Colors.orange.withOpacity(0.3), blurRadius: 5, offset: Offset(0, 3))
+                  ],
                 ),
-                itemCount: _acceptedItems.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: _acceptedItems[index].color,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: Text(
-                        _acceptedItems[index].name,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  );
-                },
+                child: Icon(Icons.add, color: Colors.white, size: 28),
               ),
-            );
-          },
+            ),
+            // Main content: Image, Title, and Price
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.search,
+                  color: Colors.grey,
+                  size: 30.0,
+                ),
+                SizedBox(height: 8),
+                Text(
+                  'Snack Box',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(height: 4),
+                Text(
+                  '\$12.99',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey[700],
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
-      ],
-    );
-  }
-
-  _snackCartDraggable() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: _sourceItems.map((topping) {
-        return Draggable<Topping>(
-          data: topping,
-          // Feedback: What the user sees while dragging
-          feedback: Material(
-            color: Colors.transparent,
-            child: CircleAvatar(
-              backgroundColor: topping.color,
-              radius: 30,
-              child: Text(
-                topping.name,
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
-          // Child When Dragging: What remains in the row
-          childWhenDragging: Opacity(
-            opacity: 0.5,
-            child: CircleAvatar(
-              backgroundColor: topping.color,
-              radius: 30,
-            ),
-          ),
-          // Normal State
-          child: CircleAvatar(
-            backgroundColor: topping.color,
-            radius: 40,
-            child: Text(
-              topping.name,
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-        );
-      }).toList(),
-    );
-  }
-
-  _snackCartDragDrop1() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _buildStatCard('Followers', '12.5k'),
-        _buildStatCard('Following', '482'),
-        _buildStatCard('Posts', '156'),
-      ],
-    );
-  }
-
-  Widget _buildStatCard(String label, String count) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.blue.shade50,
-        borderRadius: BorderRadius.circular(8),
       ),
-      child: Column(
-        children: [
-          Text(count, style: const TextStyle(fontWeight: FontWeight.bold)),
-          Text(label, style: const TextStyle(color: Colors.grey)),
         ],
       ),
     );

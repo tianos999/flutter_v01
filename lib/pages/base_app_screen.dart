@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:snack_cart/core/constants/constants.dart';
 import 'package:snack_cart/pages/event_details.dart';
 import 'package:snack_cart/pages/explore.dart';
+import 'package:snack_cart/pages/snack_cart/snack_cart_step_02.dart';
 import 'package:snack_cart/pages/snack_cart/snack_cart_step_03.dart';
 import 'package:snack_cart/pages/orders.dart';
 import 'package:snack_cart/pages/settings.dart';
@@ -33,8 +34,8 @@ class _BaseAppScreenState extends State<BaseAppScreen> {
       "page": ExplorePage(),
     },
     {
-      "icon": Icons.add_box_rounded,
-      "active_icon": Icons.add_box_rounded,
+      "icon": Icons.add,
+      "active_icon": Icons.add,
       "page": SnackCartStep01(),
     },
     {
@@ -46,6 +47,11 @@ class _BaseAppScreenState extends State<BaseAppScreen> {
       "icon": Icons.settings_outlined,
       "active_icon": Icons.settings_rounded,
       "page": SettingsPage(),
+    },
+    {
+      "icon": Icons.add,
+      "active_icon": Icons.add,
+      "page": SnackCartStep02(),
     },
     {
       "icon": Icons.add,
