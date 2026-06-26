@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:snack_cart/data/models/topping.dart';
-import 'package:snack_cart/pages/make_payment.dart';
+import 'package:snack_cart/pages/snack_cart/snack_cart_step_03.dart';
 import 'package:snack_cart/core/constants/color.dart';
 import 'package:snack_cart/presentation/widgets/custom_image.dart';
 import 'package:snack_cart/core/utils/data.dart';
 
-class SnackCartCreatePage extends StatefulWidget {
-  const SnackCartCreatePage({super.key});
+class SnackCartStep01 extends StatefulWidget {
+  const SnackCartStep01({super.key});
 
   @override
-  State<SnackCartCreatePage> createState() => _SnackCartCreatePageState();
+  State<SnackCartStep01> createState() => _SnackCartStep01State();
 }
 
-class _SnackCartCreatePageState extends State<SnackCartCreatePage> {
+class _SnackCartStep01State extends State<SnackCartStep01> {
   final List<Topping> _acceptedItems = [];
 
   // Available toppings to drag
@@ -129,7 +129,7 @@ class _SnackCartCreatePageState extends State<SnackCartCreatePage> {
         // This line opens the new page
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MakePaymentPage()),
+          MaterialPageRoute(builder: (context) => SnackCartStep03()),
         );
       },
     );

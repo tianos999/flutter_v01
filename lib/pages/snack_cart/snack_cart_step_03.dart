@@ -4,14 +4,14 @@ import 'package:snack_cart/presentation/widgets/custom_textbox.dart';
 import 'package:snack_cart/presentation/widgets/icon_box.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
-class MakePaymentPage extends StatefulWidget {
-  const MakePaymentPage({super.key});
+class SnackCartStep03 extends StatefulWidget {
+  const SnackCartStep03({super.key});
 
   @override
-  State<MakePaymentPage> createState() => _MakePaymentPageState();
+  State<SnackCartStep03> createState() => _SnackCartStep03State();
 }
 
-class _MakePaymentPageState extends State<MakePaymentPage> {
+class _SnackCartStep03State extends State<SnackCartStep03> {
 
   String cardNumber = '', expiryDate = '', cardHolderName = '', cvvCode = '';
   bool isCvvFocused = false;

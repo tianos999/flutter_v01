@@ -15,6 +15,7 @@ class AppColor {
   static const inActiveColor = Colors.grey;
 
   static const yellow = Color(0xFFffcb66);
+  static const yellow_1 = Color(0xFFFFF8F1);
   static const green = Color(0xFFb2e1b5);
   static const pink = Color(0xFFf5bde8);
   static const purple = Color(0xFFd9bcff);

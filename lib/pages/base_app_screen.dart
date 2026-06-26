@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:snack_cart/core/constants/constants.dart';
 import 'package:snack_cart/pages/event_details.dart';
 import 'package:snack_cart/pages/explore.dart';
-import 'package:snack_cart/pages/make_payment.dart';
+import 'package:snack_cart/pages/snack_cart/snack_cart_step_03.dart';
 import 'package:snack_cart/pages/orders.dart';
 import 'package:snack_cart/pages/settings.dart';
-import 'package:snack_cart/pages/snack_cart_create.dart';
+import 'package:snack_cart/pages/snack_cart/snack_cart_step_01.dart';
 import 'package:snack_cart/core/constants/color.dart';
 import 'package:snack_cart/presentation/widgets/bottombar_item.dart';
 
@@ -35,7 +35,7 @@ class _BaseAppScreenState extends State<BaseAppScreen> {
     {
       "icon": Icons.add_box_rounded,
       "active_icon": Icons.add_box_rounded,
-      "page": SnackCartCreatePage(),
+      "page": SnackCartStep01(),
     },
     {
       "icon": Icons.receipt_long,
@@ -50,7 +50,7 @@ class _BaseAppScreenState extends State<BaseAppScreen> {
     {
       "icon": Icons.add,
       "active_icon": Icons.add,
-      "page": MakePaymentPage(),
+      "page": SnackCartStep03(),
     },
     {
       "icon": Icons.add,
@@ -91,25 +91,26 @@ class _BaseAppScreenState extends State<BaseAppScreen> {
     final List<Widget> _bottomBarItemList =  List<Widget>.empty(growable: true);
 
     for (final (index, item) in _barItems.indexed) {
-      if (_barItems[index]["page"] is SnackCartCreatePage) {
+      if (_barItems[index]["page"] is SnackCartStep01) {
         FloatingActionButton floatingActionButton = FloatingActionButton(
           onPressed: () {
             setState(() {
               _currentIndex = index;
             });
           },
-          backgroundColor: Colors.pink, // TikTok pinkish-red
+          backgroundColor: Colors.indigoAccent, // TikTok pinkish-red
           foregroundColor: Colors.white,
-          elevation: 0,
+          elevation: 15.0,
           hoverElevation: 8.0,     // Hovering state shadow
           highlightElevation: 12.0,// Pressed shadow depth
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
+            side: BorderSide(color: Colors.white, width: 4.0),
           ),
           child: const Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.add, color: Colors.black, size: 24, weight: 700.0),
+              Icon(Icons.add, color: Colors.white, size: 24, weight: 700.0),
             ],
           ),
         );

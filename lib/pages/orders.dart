@@ -77,21 +77,23 @@ class _OrdersPageState extends State<OrdersPage> {
         children: [
           Accordion(
             maxOpenSections: 1, // Automatically closes others when a new section opens
-            headerBackgroundColor: Colors.blue,
-            headerBackgroundColorOpened: Colors.blue,
-            headerPadding: const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+            headerBackgroundColor: AppColor.yellow,
+            headerBackgroundColorOpened: Colors.red,
+            headerBorderRadius: 5.0,
+            contentBorderRadius: 5.0,
+            //headerPadding: const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
             children: [
               AccordionSection(
                 isOpen: true, // Starts expanded
                 //leftIcon: const Icon(Icons.info, color: Colors.white),
-                header: _header(),
+                header: _header1(),
                 content: _content(),
               ),
               AccordionSection(
                 isOpen: false,
-                leftIcon: const Icon(Icons.settings, color: Colors.white),
-                header: const Text('Section 2', style: TextStyle(color: Colors.white)),
-                content: const Icon(Icons.star, size: 50, color: Colors.amber),
+                //leftIcon: const Icon(Icons.settings, color: Colors.white),
+                header: _header1(),
+                content: _content(),
               ),
             ],
           ),
@@ -109,6 +111,82 @@ class _OrdersPageState extends State<OrdersPage> {
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
+      ),
+    );
+  }
+
+  _header1() {
+    return Container(
+      padding: EdgeInsets.only(
+        left: 8.0,
+        top: 10.0,
+        right: 0,
+        bottom: 10.0,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        //borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Column 1
+          Container(
+            margin: const EdgeInsets.only(
+              left: 0,
+              top: 0,
+              right: 8.0,
+              bottom: 0,
+            ),
+            padding: const EdgeInsets.all(5.0),
+            decoration: BoxDecoration(
+              color: Colors.blue.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Icon(Icons.star_outline, color: Colors.blue, size: 40.0),
+          ),
+
+          // Column 2
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                    '#CS-921 · Antojos nocturnos',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.0,
+                    )
+                ),
+                SizedBox(height: 8),
+                Text(
+                    'Aniversario · 20 dic · S/ 2,100',
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 13.0,
+                    )
+                ),
+              ],
+            ),
+          ),
+
+          // Column 3
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: Color(0xFFE6F4EA),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Text(
+              'Completada',
+              style: TextStyle(
+                color: Color(0xFF1E7E34),
+                fontWeight: FontWeight.w500,
+                fontSize: 11.0,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -186,9 +264,11 @@ class _OrdersPageState extends State<OrdersPage> {
   _content() {
     return Column(
         children: [
+          /*
           const SizedBox(height: 8),
           const Text("Carrito de postres 🍰", style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
           const Text("Cumpleaños · 28 jun · 40 invitados · S/ 1,480", style: TextStyle(color: Colors.white70, fontSize: 14)),
+          */
           // Timeline section
           Padding(
             padding: const EdgeInsets.all(20),
