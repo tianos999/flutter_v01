@@ -17,10 +17,26 @@ class _SnackCartStep04State extends State<SnackCartStep04> {
 
   // Available toppings to drag
   final List<Topping> _sourceItems = [
-    Topping('Cheese', Colors.cyanAccent),
-    Topping('Pepperoni', Colors.red),
-    Topping('Basil', Colors.green),
-    Topping('Gato', Colors.blue),
+    Topping(
+      name: 'Cheese',
+      color: Colors.cyanAccent,
+      price: 35.0,
+      image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
+    Topping(
+      name: 'Sprinkles',
+      color: Colors.red,
+      price: 23.0,
+      image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
+    Topping(
+      name: 'Pepperoni',
+      color: Colors.green,
+      price: 15.0,
+      image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
+    Topping(
+      name: 'Basil',
+      color: Colors.blue,
+      price: 18.5,
+      image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
   ];
 
   @override
@@ -258,4 +274,48 @@ class _SnackCartStep04State extends State<SnackCartStep04> {
       ),
     );
   }
+
+  _draggable(Topping topping) {
+
+    Widget feedback = Material(
+      color: Colors.transparent,
+      child: CircleAvatar(
+        backgroundColor: topping.color,
+        radius: 30,
+        child: Text(
+          topping.name,
+          style: const TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+
+    Widget childWhenDragging = Opacity(
+      opacity: 0.5,
+      child: CircleAvatar(
+        backgroundColor: topping.color,
+        radius: 30,
+      ),
+    );
+
+    Widget child = CircleAvatar(
+      backgroundColor: topping.color,
+      radius: 40,
+      child: Text(
+        topping.name,
+        style: const TextStyle(color: Colors.white),
+      ),
+    );
+
+    return Draggable<Topping>(
+      // Data to be transmitted upon successful drop
+      data: topping,
+      // Visual feedback that follows the user's finger during a drag
+      feedback: feedback,
+      // Alternative widget left in the original spot during an ongoing drag
+      childWhenDragging: childWhenDragging,
+      // The look of the widget sitting in its initial idle state
+      child: child,
+    );
+  }
+
 }

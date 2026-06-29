@@ -17,10 +17,11 @@ class _SnackCartStep02State extends State<SnackCartStep02> {
 
   // Available toppings to drag
   final List<Topping> _sourceItems = [
-    Topping('Cheese', Colors.cyanAccent),
-    Topping('Pepperoni', Colors.red),
-    Topping('Basil', Colors.green),
-    Topping('Gato', Colors.blue),
+    Topping(
+      name: 'Cheese',
+      color: Colors.cyanAccent,
+      price: 35.0,
+      image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
   ];
 
   @override
