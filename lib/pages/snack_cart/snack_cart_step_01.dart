@@ -18,64 +18,74 @@ class _SnackCartStep01State extends State<SnackCartStep01> {
   // Available toppings to drag
   final List<Topping> _toppingsItems = [
     Topping(
-      name: '111',
-      color: Colors.cyanAccent,
+      name: 'Brownies',
+      color: Colors.blueGrey,
       price: 25.0,
+      icon: Icons.search,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',
     ),
     Topping(
-      name: '222',
+      name: 'Cupcakes',
       color: Colors.red,
       price: 10.3,
+      icon: Icons.portrait,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',
     ),
     Topping(
-      name: '333',
+      name: 'Picarones',
       color: Colors.green,
       price: 14.0,
+      icon: Icons.podcasts,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',
     ),
     Topping(
-      name: '444',
+      name: 'Fresas con crema',
       color: Colors.blue,
       price: 38.5,
+      icon: Icons.grade_rounded,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',
     ),
 
     Topping(
-      name: '555',
-      color: Colors.cyanAccent,
+      name: 'Helado artesanal',
+      color: Colors.blueGrey,
       price: 25.0,
+      icon: Icons.select_all,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',
     ),
     Topping(
-      name: '666',
+      name: 'Salchipapa',
       color: Colors.red,
       price: 10.3,
+      icon: Icons.bus_alert,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',
     ),
     Topping(
-      name: '777',
+      name: 'Canchita',
       color: Colors.green,
       price: 14.0,
+      icon: Icons.card_travel_outlined,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',
     ),
     Topping(
-      name: '888',
+      name: 'Tequeños',
       color: Colors.blue,
       price: 38.5,
+      icon: Icons.yard_outlined,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',
     ),
     Topping(
-      name: '999',
+      name: 'Anticuchos',
       color: Colors.green,
       price: 14.0,
+      icon: Icons.card_membership_sharp,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',
     ),
     Topping(
-      name: 'A-111',
+      name: 'Chicha / jugos',
       color: Colors.blue,
       price: 38.5,
+      icon: Icons.fax_rounded,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',
     ),
   ];
@@ -174,17 +184,13 @@ class _SnackCartStep01State extends State<SnackCartStep01> {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: List.generate(rowCount, (rowIndex) { // The 4 Rows
 
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(columnCount, (colIndex) { // The 3 Columns
             int itemIndex = rowIndex * columnCount + colIndex;
-
-            print('columns-conejo: $columnCount, colIndex: $colIndex, rowIndex: $rowIndex, itemIndex: $itemIndex');
-            print('---------------------------------------------');
-
 
             if (itemIndex >= itemCount) {
               return _draggableEmpty();
@@ -274,24 +280,108 @@ class _SnackCartStep01State extends State<SnackCartStep01> {
       ),
     );
 
-    Widget child = CircleAvatar(
-      backgroundColor: topping.color,
-      radius: 40,
-      child: Text(
-        topping.name,
-        style: const TextStyle(color: Colors.white),
-      ),
-    );
-
     return Draggable<Topping>(
       // Data to be transmitted upon successful drop
       data: topping,
       // Visual feedback that follows the user's finger during a drag
       feedback: feedback,
       // Alternative widget left in the original spot during an ongoing drag
-      childWhenDragging: childWhenDragging,
+      childWhenDragging: SizedBox.shrink(),
       // The look of the widget sitting in its initial idle state
-      child: child,
+      child: _draggableChild(topping),
+    );
+  }
+
+  _draggableChild(Topping topping) {
+
+    Widget container02 = Container(
+      padding: EdgeInsets.all(2.0),
+      decoration: BoxDecoration(
+        // color: Colors.blue,
+        borderRadius: BorderRadius.circular(9.0),
+        border: Border.all(
+          color: Colors.red,
+          width: 1.0,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Stack( // Stack
+        clipBehavior: Clip.none,
+        children: [
+          // Add Button in the top right corner
+          Positioned(
+            top: -5,
+            right: -12,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.orange,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(color: Colors.orange.withOpacity(0.3), blurRadius: 5, offset: Offset(0, 3))
+                ],
+              ),
+              child: Icon(Icons.add, color: Colors.white, size: 25),
+            ),
+          ),
+          // Main content: Image, Title, and Price
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                topping.icon,
+                color: topping.color,
+                size: 30.0,
+              ),
+              SizedBox(height: 8),
+              Text(
+                topping.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              SizedBox(height: 4),
+              Container(
+                width: double.infinity, // Forces container to take full width
+                child: Text(
+                  'S/ ${topping.price.toStringAsFixed(2)}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.grey[700],
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ],
+      ), // Stack
+    );
+
+    Widget container01 = Container(
+      margin: const EdgeInsets.only(
+      left: 0,
+      top: 0,
+      right: 0,
+      bottom: 15.0,
+    ),
+      // color: Colors.red,
+      height: 90.0,
+      width: 90.0,
+      child: container02,
+    );
+
+    return Expanded(
+      child: container01,
     );
   }
 
@@ -318,12 +408,11 @@ class _SnackCartStep01State extends State<SnackCartStep01> {
       child: Container(
         margin: EdgeInsets.all(4.0),
         color: Colors.blueAccent,
-        height: 60,
-        child: Center(
-          child: Text(
-            'gato',
-            style: TextStyle(color: Colors.black),
-          ),
+        height: 90.0,
+        width: 90.0,
+        child: Text(
+          'gato',
+          style: TextStyle(color: Colors.black),
         ),
       ),
     );
@@ -331,16 +420,43 @@ class _SnackCartStep01State extends State<SnackCartStep01> {
 
   _draggableEmpty() {
 
-    return Expanded(
-      child: Container(
-        margin: EdgeInsets.all(4.0),
-        color: Colors.red,
-        height: 60,
-        child: Center(
-          child: Text(
-            'pollo',
-            style: TextStyle(color: Colors.black),
+    return Container(
+      margin: const EdgeInsets.only(
+        left: 4.0,
+        top: 0,
+        right: 4.0,
+        bottom: 12.0,
+      ),
+      height: 80.0,
+      width: 80.0,
+      decoration: BoxDecoration(
+        // 1. Background Color (Move it here from the Container!)
+        color: Colors.blueAccent,
+
+        // 2. Rounded Corners (Only works if shape is BoxShape.rectangle)
+        borderRadius: BorderRadius.circular(9.0),
+
+        // 3. Border Around the Container
+        border: Border.all(
+          color: Colors.black26,
+          width: 1,
+        ),
+
+        // 4. Drop Shadows
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            spreadRadius: 2,
+            blurRadius: 8,
+            offset: const Offset(4, 4), // Moves shadow right and down
           ),
+        ],
+
+        // 5. Background Gradient (Overrides the solid color if active)
+        gradient: const LinearGradient(
+          colors: [Colors.white30, Colors.black45],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
       ),
     );

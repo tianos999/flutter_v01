@@ -21,21 +21,25 @@ class _SnackCartStep04State extends State<SnackCartStep04> {
       name: 'Cheese',
       color: Colors.cyanAccent,
       price: 35.0,
+      icon: Icons.search,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
     Topping(
       name: 'Sprinkles',
       color: Colors.red,
       price: 23.0,
+      icon: Icons.search,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
     Topping(
       name: 'Pepperoni',
       color: Colors.green,
       price: 15.0,
+      icon: Icons.search,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
     Topping(
       name: 'Basil',
       color: Colors.blue,
       price: 18.5,
+      icon: Icons.search,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
   ];
 

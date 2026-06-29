@@ -21,6 +21,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> {
       name: 'Cheese',
       color: Colors.cyanAccent,
       price: 35.0,
+      icon: Icons.search,
       image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
   ];
 
