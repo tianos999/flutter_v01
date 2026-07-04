@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:snack_cart/core/constants/constants.dart';
+import 'package:snack_cart/core/utils/utils_mixin.dart';
 import 'package:snack_cart/data/models/topping.dart';
 import 'package:snack_cart/core/constants/color.dart';
 import 'package:snack_cart/presentation/widgets/custom_image.dart';
@@ -8,13 +9,15 @@ import 'package:snack_cart/core/utils/data.dart';
 import 'package:dashed_border/dashed_border.dart';
 
 class SnackCartStep01 extends StatefulWidget {
-  const SnackCartStep01({super.key});
+
+  final Function(int) onIndexChanged;
+  const SnackCartStep01({Key? key, required this.onIndexChanged}) : super(key: key);
 
   @override
   State<SnackCartStep01> createState() => _SnackCartStep01State();
 }
 
-class _SnackCartStep01State extends State<SnackCartStep01> {
+class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
   final List<Topping> _acceptedItems = [];
 
   // Available toppings to drag
@@ -158,11 +161,23 @@ class _SnackCartStep01State extends State<SnackCartStep01> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          _title(),
           _snackCartDraggable(),
-          _sizedBox(10),
+          sizedBox(height: 10),
           _snackCartDragTarget(),
           _proceedWithOrder(),
+          sizedBox(height: 70),
         ],
+      ),
+    );
+  }
+
+  _title() {
+    return const Padding(
+      padding: EdgeInsets.only(left: 15),
+      child: Text(
+        "Arma tu carrito Snack",
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -218,26 +233,41 @@ class _SnackCartStep01State extends State<SnackCartStep01> {
   }
 
   _proceedWithOrder() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: ElevatedButton(
-        onPressed: () {
-          // Handle proceed with order action
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.primary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          padding: const EdgeInsets.symmetric(vertical: 15),
-        ),
-        child: const Center(
-          child: Text(
-            'Proceed with Order',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
+
+    Widget button = ElevatedButton.icon(
+      onPressed: () {
+        widget.onIndexChanged(Constants.ORDER_SUMMARY_PAGE);
+      },
+      icon: const Icon(Icons.check_circle_outline, size: 24.0,),
+      label: const Text("Proceda con la orden"),
+      iconAlignment: IconAlignment.end, // Positions icon to the right of text
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColor.primary, // Background color
+        foregroundColor: Colors.white,    // Text and icon color
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8), // Rounded corners
         ),
       ),
+    );
+
+    Widget row = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween, // Aligns items horizontally
+      children: [
+        const Text(
+          'S/ 10.00',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold
+          ),
+        ),
+        button,
+      ],
+    );
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 15.0),
+      child: row,
     );
   }
 
@@ -275,11 +305,11 @@ class _SnackCartStep01State extends State<SnackCartStep01> {
         height: 300,
         width: 350,
         decoration: BoxDecoration(
-          color: candidateData.isEmpty ? Colors.grey.shade200 : AppColor.cartDropV02,
+          color: candidateData.isEmpty ? Colors.grey.shade200 : AppColor.cartDropBg,
           borderRadius: BorderRadius.circular(8),
           // border: Border.all(color: AppColor.cartDropV01),
           border: DashedBorder(
-            color: AppColor.cartDropV01,     // Border color
+            color: AppColor.cartDropBorder,     // Border color
             width: 2.0,            // Border thickness
             dashLength: 6.0,       // Dash length
             dashGap: 3.0,          // Gap length
@@ -476,19 +506,6 @@ class _SnackCartStep01State extends State<SnackCartStep01> {
           foregroundColor: Colors.blue,     // Sets text and icon color
         ),
         child: Icon(icon, size: 18, color: Colors.deepPurple),
-      ),
-    );
-  }
-
-  _sizedBox(double? height) {
-    return SizedBox(
-      height: height,
-      width: double.infinity,
-      child: const DecoratedBox(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-        ),
       ),
     );
   }

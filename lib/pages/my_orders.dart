@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:snack_cart/core/constants/color.dart';
 import 'package:snack_cart/core/utils/data.dart';
+import 'package:snack_cart/core/utils/utils_mixin.dart';
 import 'package:snack_cart/presentation/widgets/custom_image.dart';
 import 'package:accordion/accordion.dart';
 
-class OrdersPage extends StatefulWidget {
-  const OrdersPage({Key? key}) : super(key: key);
+class MyOrdersPage extends StatefulWidget {
+  const MyOrdersPage({Key? key}) : super(key: key);
 
   @override
-  _OrdersPageState createState() => _OrdersPageState();
+  _MyOrdersPageState createState() => _MyOrdersPageState();
 }
 
-class _OrdersPageState extends State<OrdersPage> {
+class _MyOrdersPageState extends State<MyOrdersPage> with UtilsMixin {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -102,19 +103,6 @@ class _OrdersPageState extends State<OrdersPage> {
     );
   }
 
-  _sizedBox(double? height) {
-    return SizedBox(
-      height: height,
-      width: double.infinity,
-      child: const DecoratedBox(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-        ),
-      ),
-    );
-  }
-
   _header1() {
     return Container(
       padding: EdgeInsets.only(
@@ -150,16 +138,16 @@ class _OrdersPageState extends State<OrdersPage> {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
+              children: [
+                const Text(
                     '#CS-921 · Antojos nocturnos',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 15.0,
                     )
                 ),
-                SizedBox(height: 8),
-                Text(
+                sizedBox(height: 8.0),
+                const Text(
                     'Aniversario · 20 dic · S/ 2,100',
                     style: TextStyle(
                       fontWeight: FontWeight.normal,

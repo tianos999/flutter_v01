@@ -53,7 +53,7 @@ class PropertyItem extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        onIndexChanged(Constants.EVENT_DETAILS_PAGE);
+        onIndexChanged(Constants.ORDER_SUMMARY_PAGE);
       },
       child: _container,
     );

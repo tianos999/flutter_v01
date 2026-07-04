@@ -11,8 +11,8 @@ class AppColor {
   static const shadowColor = Colors.black87;
   static const textBoxColor = Colors.white;
 
-  static const cartDropV01 = Color(0xFFC4B5FD);
-  static const cartDropV02 = Color(0xFFF3EEFF);
+  static const cartDropBorder = Color(0xFFC4B5FD);
+  static const cartDropBg = Color(0xFFF3EEFF);
 
   static const bottomBarColor = Colors.white;
   static const inActiveColor = Colors.grey;

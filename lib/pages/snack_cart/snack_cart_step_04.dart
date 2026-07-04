@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:snack_cart/core/constants/constants.dart';
+import 'package:snack_cart/core/utils/utils_mixin.dart';
+import 'package:snack_cart/data/models/employee_row.dart';
+import 'package:snack_cart/data/models/info_row.dart';
 import 'package:snack_cart/data/models/topping.dart';
 import 'package:snack_cart/pages/snack_cart/snack_cart_step_03.dart';
 import 'package:snack_cart/core/constants/color.dart';
@@ -6,42 +10,15 @@ import 'package:snack_cart/presentation/widgets/custom_image.dart';
 import 'package:snack_cart/core/utils/data.dart';
 
 class SnackCartStep04 extends StatefulWidget {
-  const SnackCartStep04({super.key});
+
+  final Function(int) onIndexChanged;
+  const SnackCartStep04({Key? key, required this.onIndexChanged}) : super(key: key);
 
   @override
   State<SnackCartStep04> createState() => _SnackCartStep04State();
 }
 
-class _SnackCartStep04State extends State<SnackCartStep04> {
-  final List<Topping> _acceptedItems = [];
-
-  // Available toppings to drag
-  final List<Topping> _sourceItems = [
-    Topping(
-      name: 'Cheese',
-      color: Colors.cyanAccent,
-      price: 35.0,
-      icon: Icons.search,
-      image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
-    Topping(
-      name: 'Sprinkles',
-      color: Colors.red,
-      price: 23.0,
-      icon: Icons.search,
-      image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
-    Topping(
-      name: 'Pepperoni',
-      color: Colors.green,
-      price: 15.0,
-      icon: Icons.search,
-      image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
-    Topping(
-      name: 'Basil',
-      color: Colors.blue,
-      price: 18.5,
-      icon: Icons.search,
-      image: 'https://images.unsplash.com/photo-1723491922263-190acbde53d9?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.1.0',),
-  ];
+class _SnackCartStep04State extends State<SnackCartStep04> with UtilsMixin {
 
   @override
   Widget build(BuildContext context) {
@@ -106,14 +83,13 @@ class _SnackCartStep04State extends State<SnackCartStep04> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _sizedBox(),
+          sizedBox(height: 20),
           _title(),
-          _sizedBox(),
-          _snackCartDraggable(),
-          _sizedBox(),
-          _snackCartDragTarget(),
-          _sizedBox(),
-          _submitPaymentButton(),
+          sizedBox(height: 20),
+          _paymentConfirmed(),
+          sizedBox(height: 10),
+          _viewMyOrders(),
+          sizedBox(height: 80),
         ],
       ),
     );
@@ -121,204 +97,167 @@ class _SnackCartStep04State extends State<SnackCartStep04> {
 
   _title() {
     return const Padding(
-      padding: EdgeInsets.only(left: 15),
+      //padding: EdgeInsets.only(left: 15),
+      padding: const EdgeInsets.only(
+        left: 15.0,
+        top: 0.0,
+        right: 0.0,
+        bottom: 0.0,
+      ),
       child: Text(
-        "Arma tu carrito Snack",
+        "Pago confirmado",
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
       ),
     );
   }
 
-  _sizedBox() {
-    return const SizedBox(
-      height: 20,
-      width: double.infinity,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+  _paymentConfirmed() {
+    return SafeArea(
+      child: Padding(
+        //padding: const EdgeInsets.symmetric(horizontal: 22),
+        padding: const EdgeInsets.only(
+          left: 22.0,
+          top: 0.0,
+          right: 22.0,
+          bottom: 22.0,
+        ),
+        child: Column(
+          children: [
+            _successCircle(),
+            sizedBox(height: 30),
+            const Text(
+              "¡Pago confirmado!",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 28,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            sizedBox(height: 8),
+            Text(
+              "Tu carrito snack está reservado 🎉",
+              style: TextStyle(
+                color: Colors.black54.withOpacity(.75),
+                fontSize: 20,
+              ),
+            ),
+            sizedBox(height: 35),
+            _infoRow(),
+            sizedBox(height: 34),
+            Text(
+              "Recibirás la factura por correo · pago procesado con tarjeta",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black54.withOpacity(.65),
+                fontSize: 16,
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  _submitPaymentButton() {
-    final Widget button = ElevatedButton(
-      child: const Text('Proceda con la orden'),
-      onPressed: () {
-        // This line opens the new page
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SnackCartStep03()),
-        );
-      },
-    );
-
-    return Center(
-        child: button
-    );
-  }
-
-  _snackCartDragTarget() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        DragTarget<Topping>(
-          onWillAcceptWithDetails: (details) => true,
-          onAcceptWithDetails: (details) {
-            setState(() {
-              _acceptedItems.add(details.data);
-            });
-          },
-          builder: (context, candidateData, rejectedData) {
-            return Container(
-              height: 400,
-              width: 350,
-              decoration: BoxDecoration(
-                color: candidateData.isEmpty ? Colors.grey.shade200 : Colors.green.shade200,
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.grey),
-              ),
-              child: _acceptedItems.isEmpty ? const Center(child: Text('Agregar Toppings Aqui!')) : GridView.builder(
-                padding: const EdgeInsets.all(8),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
-                ),
-                itemCount: _acceptedItems.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: _acceptedItems[index].color,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: Text(
-                        _acceptedItems[index].name,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            );
-          },
-        ),
-      ],
-    );
-  }
-
-  _snackCartDraggable() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: _sourceItems.map((topping) {
-        return Draggable<Topping>(
-          data: topping,
-          // Feedback: What the user sees while dragging
-          feedback: Material(
-            color: Colors.transparent,
-            child: CircleAvatar(
-              backgroundColor: topping.color,
-              radius: 30,
-              child: Text(
-                topping.name,
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
-          // Child When Dragging: What remains in the row
-          childWhenDragging: Opacity(
-            opacity: 0.5,
-            child: CircleAvatar(
-              backgroundColor: topping.color,
-              radius: 30,
-            ),
-          ),
-          // Normal State
-          child: CircleAvatar(
-            backgroundColor: topping.color,
-            radius: 40,
-            child: Text(
-              topping.name,
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-        );
-      }).toList(),
-    );
-  }
-
-  _snackCartDragDrop1() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _buildStatCard('Followers', '12.5k'),
-        _buildStatCard('Following', '482'),
-        _buildStatCard('Posts', '156'),
-      ],
-    );
-  }
-
-  Widget _buildStatCard(String label, String count) {
+  _infoRow() {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 22,
+      ),
       decoration: BoxDecoration(
-        color: Colors.blue.shade50,
-        borderRadius: BorderRadius.circular(8),
+        color: AppColor.cartDropBg.withOpacity(.10),
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(
+          color: AppColor.cartDropBorder,
+          //color: AppColor.cartDropV02.withOpacity(.08),
+        ),
       ),
       child: Column(
         children: [
-          Text(count, style: const TextStyle(fontWeight: FontWeight.bold)),
-          Text(label, style: const TextStyle(color: Colors.grey)),
+          const InfoRow(
+            icon: Icons.tag,
+            label: "Orden",
+            value: "#CS-1043",
+          ),
+          sizedBox(height: 22, color: AppColor.cartDropBg.withOpacity(.10)),
+          const InfoRow(
+            icon: Icons.calendar_today_outlined,
+            label: "Fecha del evento",
+            value: "28 jun 2026",
+          ),
+          sizedBox(height: 22, color: AppColor.cartDropBg.withOpacity(.10)),
+          const EmployeeRow(),
+          sizedBox(height: 22, color: AppColor.cartDropBg.withOpacity(.10)),
+          const InfoRow(
+            icon: Icons.payments_outlined,
+            label: "Total pagado",
+            value: "S/ 186",
+            bold: true,
+          ),
         ],
       ),
     );
   }
 
-  _draggable(Topping topping) {
+  _successCircle() {
+    return Container(
+      width: 180,
+      height: 180,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: const Color(0xFF473A87),
+      ),
+      child: Center(
+        child: Container(
+          width: 145,
+          height: 145,
+          decoration: const BoxDecoration(
+            color: Color(0xFF1FAA47),
+            shape: BoxShape.circle,
+          ),
+          child: const Icon(
+            Icons.check,
+            color: Colors.white,
+            size: 65,
+          ),
+        ),
+      ),
+    );
+  }
 
-    Widget feedback = Material(
-      color: Colors.transparent,
-      child: CircleAvatar(
-        backgroundColor: topping.color,
-        radius: 30,
-        child: Text(
-          topping.name,
-          style: const TextStyle(color: Colors.white),
+  _viewMyOrders() {
+
+    Widget button = ElevatedButton.icon(
+      onPressed: () {
+        widget.onIndexChanged(Constants.MY_ORDERS_PAGE);
+      },
+      icon: const Icon(Icons.receipt_long, size: 24.0,),
+      label: const Text("Ver mis órdenes"),
+      iconAlignment: IconAlignment.end, // Positions icon to the right of text
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColor.primary, // Background color
+        foregroundColor: Colors.white,    // Text and icon color
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8), // Rounded corners
         ),
       ),
     );
 
-    Widget childWhenDragging = Opacity(
-      opacity: 0.5,
-      child: CircleAvatar(
-        backgroundColor: topping.color,
-        radius: 30,
-      ),
+    Widget row = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween, // Aligns items horizontally
+      children: [
+        Expanded(
+            child: button
+        ),
+      ],
     );
 
-    Widget child = CircleAvatar(
-      backgroundColor: topping.color,
-      radius: 40,
-      child: Text(
-        topping.name,
-        style: const TextStyle(color: Colors.white),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0),
+      child: Expanded(
+          child: row
       ),
-    );
-
-    return Draggable<Topping>(
-      // Data to be transmitted upon successful drop
-      data: topping,
-      // Visual feedback that follows the user's finger during a drag
-      feedback: feedback,
-      // Alternative widget left in the original spot during an ongoing drag
-      childWhenDragging: childWhenDragging,
-      // The look of the widget sitting in its initial idle state
-      child: child,
     );
   }
 

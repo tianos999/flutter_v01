@@ -599,17 +599,4 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
     );
   }
 
-  _sizedBox() {
-    return const SizedBox(
-      height: 20,
-      width: double.infinity,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-        ),
-      ),
-    );
-  }
-
 }

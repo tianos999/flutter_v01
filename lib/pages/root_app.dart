@@ -4,22 +4,23 @@ import 'package:snack_cart/pages/event_details.dart';
 import 'package:snack_cart/pages/explore.dart';
 import 'package:snack_cart/pages/snack_cart/snack_cart_step_02.dart';
 import 'package:snack_cart/pages/snack_cart/snack_cart_step_03.dart';
-import 'package:snack_cart/pages/orders.dart';
+import 'package:snack_cart/pages/my_orders.dart';
 import 'package:snack_cart/pages/settings.dart';
 import 'package:snack_cart/pages/snack_cart/snack_cart_step_01.dart';
 import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/pages/snack_cart/snack_cart_step_04.dart';
 import 'package:snack_cart/presentation/widgets/bottombar_item.dart';
 
 import 'home.dart';
 
-class BaseAppScreen extends StatefulWidget {
-  const BaseAppScreen({Key? key}) : super(key: key);
+class RootApp extends StatefulWidget {
+  const RootApp({Key? key}) : super(key: key);
 
   @override
-  _BaseAppScreenState createState() => _BaseAppScreenState();
+  _RootAppState createState() => _RootAppState();
 }
 
-class _BaseAppScreenState extends State<BaseAppScreen> {
+class _RootAppState extends State<RootApp> {
   int _currentIndex = 0;
 
   late final List _barItems = [
@@ -36,12 +37,12 @@ class _BaseAppScreenState extends State<BaseAppScreen> {
     {
       "icon": Icons.add,
       "active_icon": Icons.add,
-      "page": SnackCartStep01(),
+      "page": SnackCartStep01(onIndexChanged: _updateIndex),
     },
     {
       "icon": Icons.receipt_long,
       "active_icon": Icons.receipt_long_rounded,
-      "page": OrdersPage(),
+      "page": MyOrdersPage(),
     },
     {
       "icon": Icons.settings_outlined,
@@ -51,12 +52,17 @@ class _BaseAppScreenState extends State<BaseAppScreen> {
     {
       "icon": Icons.add,
       "active_icon": Icons.add,
-      "page": SnackCartStep02(),
+      "page": SnackCartStep02(onIndexChanged: _updateIndex),
     },
     {
       "icon": Icons.add,
       "active_icon": Icons.add,
-      "page": SnackCartStep03(),
+      "page": SnackCartStep03(onIndexChanged: _updateIndex),
+    },
+    {
+      "icon": Icons.add,
+      "active_icon": Icons.add,
+      "page": SnackCartStep04(onIndexChanged: _updateIndex),
     },
     {
       "icon": Icons.add,

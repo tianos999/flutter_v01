@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:snack_cart/core/constants/color.dart';
 import 'package:snack_cart/core/utils/data.dart';
+import 'package:snack_cart/core/utils/utils_mixin.dart';
 import 'package:snack_cart/presentation/widgets/custom_image.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -10,7 +11,7 @@ class SettingsPage extends StatefulWidget {
   _SettingsPageState createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsPageState extends State<SettingsPage> with UtilsMixin {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -74,7 +75,7 @@ class _SettingsPageState extends State<SettingsPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _sizedBox(),
+          sizedBox(height: 20),
           // Settings Group 1
           _buildSettingsGroup([
             _buildListTile(Icons.person_outline, Colors.orange, 'Profile'),
@@ -92,19 +93,6 @@ class _SettingsPageState extends State<SettingsPage> {
             _buildListTile(Icons.logout, Colors.red, 'Log Out', showTrailing: false, isDestructive: true),
           ]),
         ],
-      ),
-    );
-  }
-
-  _sizedBox() {
-    return const SizedBox(
-      height: 20,
-      width: double.infinity,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-        ),
       ),
     );
   }

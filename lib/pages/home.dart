@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:snack_cart/core/constants/color.dart';
 import 'package:snack_cart/core/constants/constants.dart';
 import 'package:snack_cart/core/utils/data.dart';
+import 'package:snack_cart/core/utils/utils_mixin.dart';
 import 'package:snack_cart/presentation/widgets/category_item.dart';
 import 'package:snack_cart/presentation/widgets/custom_image.dart';
 import 'package:snack_cart/presentation/widgets/custom_textbox.dart';
@@ -13,6 +13,7 @@ import 'package:snack_cart/presentation/widgets/recent_item.dart';
 import 'package:snack_cart/presentation/widgets/recommend_item.dart';
 
 class HomePage extends StatefulWidget {
+
   final Function(int) onIndexChanged;
   const HomePage({Key? key, required this.onIndexChanged}) : super(key: key);
 
@@ -20,7 +21,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with UtilsMixin {
 
   int _selectedCategory = 0;
 
@@ -33,8 +34,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: <Widget>[
+    return CustomScrollView(slivers: <Widget>[
         SliverAppBar(
           backgroundColor: AppColor.appBgColor,
           pinned: true,
@@ -95,23 +95,23 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildPromoCard1(),
-          // _sizedBox(15),
+          // sizedBox(height: 20),
           // _buildSearch(),
-          // _sizedBox(20),
+          // sizedBox(height: 20),
           _buildCategories(),
-          _sizedBox(20),
+          sizedBox(height: 20),
           _popular(),
-          _sizedBox(20),
+          sizedBox(height: 20),
           _buildPopulars(),
-          _sizedBox(20),
+          sizedBox(height: 20),
           _recommended(),
-          _sizedBox(20),
+          sizedBox(height: 20),
           _buildRecommended(),
-          _sizedBox(20),
+          sizedBox(height: 20),
           _recent(),
-          _sizedBox(20),
+          sizedBox(height: 20),
           _buildRecent(),
-          _sizedBox(100),
+          sizedBox(height: 100),
         ],
       ),
     );
@@ -185,7 +185,7 @@ class _HomePageState extends State<HomePage> {
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.white, foregroundColor: Colors.deepPurple),
             onPressed: () {
-              _showToast();
+              showToast("Button Clicked! Success");
               widget.onIndexChanged(Constants.SNACK_CART_CREATE_PAGE);
             },
           child: const Row(
@@ -298,12 +298,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _sizedBox(double? height) {
-    return SizedBox(
-      height: height,
-    );
-  }
-
   Widget _buildSearch() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -402,15 +396,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _showToast() {
-    Fluttertoast.showToast(
-      msg: "Button Clicked! Success",
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.black,
-      textColor: Colors.white,
-      fontSize: 16.0,
-    );
-  }
 }

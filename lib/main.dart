@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/base_app_screen.dart';
+import 'pages/root_app.dart';
 import 'package:snack_cart/core/constants/color.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         primaryColor: AppColor.primary,
       ),
       themeMode: ThemeMode.system,
-      home: const BaseAppScreen(),
+      home: const RootApp(),
     );
   }
 }

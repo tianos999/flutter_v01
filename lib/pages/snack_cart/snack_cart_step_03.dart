@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/constants.dart';
+import 'package:snack_cart/core/utils/utils_mixin.dart';
 import 'package:snack_cart/presentation/widgets/custom_textbox.dart';
 import 'package:snack_cart/presentation/widgets/icon_box.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
 class SnackCartStep03 extends StatefulWidget {
-  const SnackCartStep03({super.key});
+
+  final Function(int) onIndexChanged;
+  const SnackCartStep03({Key? key, required this.onIndexChanged}) : super(key: key);
 
   @override
   State<SnackCartStep03> createState() => _SnackCartStep03State();
 }
 
-class _SnackCartStep03State extends State<SnackCartStep03> {
+class _SnackCartStep03State extends State<SnackCartStep03> with UtilsMixin {
 
   String cardNumber = '', expiryDate = '', cardHolderName = '', cvvCode = '';
   bool isCvvFocused = false;
@@ -42,12 +46,15 @@ class _SnackCartStep03State extends State<SnackCartStep03> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _sizedBox(),
+          sizedBox(height: 20),
           _title(),
-          _sizedBox(),
+          sizedBox(height: 20),
           _creditCardWidget(),
-          _sizedBox(),
+          sizedBox(height: 20),
           _creditCardForm(),
+          sizedBox(height: 10),
+          _payNow(),
+          sizedBox(height: 70),
         ],
       ),
     );
@@ -169,19 +176,6 @@ class _SnackCartStep03State extends State<SnackCartStep03> {
     );
   }
 
-  _sizedBox() {
-    return const SizedBox(
-      height: 20,
-      width: double.infinity,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-        ),
-      ),
-    );
-  }
-
   _title() {
     return const Padding(
       padding: EdgeInsets.only(left: 15),
@@ -191,4 +185,44 @@ class _SnackCartStep03State extends State<SnackCartStep03> {
       ),
     );
   }
+
+  _payNow() {
+
+    Widget button = ElevatedButton.icon(
+      onPressed: () {
+        widget.onIndexChanged(Constants.PAYMENT_CONFIRMED_PAGE);
+      },
+      icon: const Icon(Icons.check_circle_outline, size: 24.0,),
+      label: const Text("Ver mis órdenes"),
+      iconAlignment: IconAlignment.end, // Positions icon to the right of text
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColor.primary, // Background color
+        foregroundColor: Colors.white,    // Text and icon color
+        padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8), // Rounded corners
+        ),
+      ),
+    );
+
+    Widget row = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween, // Aligns items horizontally
+      children: [
+        const Text(
+          'S/ 10.00',
+          style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold
+          ),
+        ),
+        button,
+      ],
+    );
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 15.0),
+      child: row,
+    );
+  }
+
 }
