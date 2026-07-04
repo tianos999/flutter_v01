@@ -161,7 +161,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                       Icons.receipt_long,
                       color: AppColor.orange
                     ),
-                    const SizedBox(width: 10),
+                    sizedBox(width: 10),
                     const Text(
                       "Topics seleccionados",
                       style: TextStyle(
@@ -172,17 +172,15 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                     ),
                   ],
                 ),
-
-                const SizedBox(height: 18),
-
+                sizedBox(height: 18),
                 Row(
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "☕",
                       style: TextStyle(fontSize: 24),
                     ),
-                    SizedBox(width: 12),
-                    Expanded(
+                    sizedBox(width: 12),
+                    const Expanded(
                       child: Text(
                         "Café ×1",
                         style: TextStyle(
@@ -191,7 +189,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                         ),
                       ),
                     ),
-                    Text(
+                    const Text(
                       "S/ 8",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -222,7 +220,6 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             const Text(
               "Detalles del evento",
               style: TextStyle(
@@ -231,9 +228,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                 fontSize: 18,
               ),
             ),
-
-            const SizedBox(height: 28),
-
+            sizedBox(height: 28),
             Row(
               children: [
                 Expanded(
@@ -252,7 +247,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                     ),
                   ),
                 ),
-                const SizedBox(width: 16),
+                sizedBox(width: 16),
                 Expanded(
                   child: FieldDetail(
                     label: "INVITADOS",
@@ -264,9 +259,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                 ),
               ],
             ),
-
-            const SizedBox(height: 20),
-
+            sizedBox(height: 20),
             FieldDetail(
               label: "DIRECCIÓN DEL EVENTO",
               child: const Text(

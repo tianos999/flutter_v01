@@ -4,6 +4,7 @@ import 'package:snack_cart/core/constants/constants.dart';
 import 'package:snack_cart/core/utils/utils_mixin.dart';
 import 'package:snack_cart/data/models/topping.dart';
 import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/pages/snack_cart/cart_item_card.dart';
 import 'package:snack_cart/presentation/widgets/custom_image.dart';
 import 'package:snack_cart/core/utils/data.dart';
 import 'package:dashed_border/dashed_border.dart';
@@ -296,7 +297,7 @@ class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
         itemCount: _acceptedItems.length,
         itemBuilder: (context, index) {
           //return _targetItemBuilder(context, index);
-          return _targetItemBuilder1(context, index);
+          return _targetItemBuilder2(context, index);
         },
       );
     }
@@ -318,30 +319,6 @@ class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
         ),
         child: _child
     );
-  }
-
-  _targetItemBuilder(BuildContext context, int index) {
-    return Container(
-      decoration: BoxDecoration(
-        color: _acceptedItems[index].color,
-        shape: BoxShape.rectangle,
-      ),
-      child: Center(
-        child: Text(
-          _acceptedItems[index].name,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
-
-  _targetItemBuilder2(BuildContext context, int index) {
-    return _buildSettingsGroup([
-      _buildListTile(Icons.person_outline, Colors.orange, 'Profile'),
-    ]);
   }
 
   _targetAnimatedContainer(BuildContext context, int index) {
@@ -381,6 +358,10 @@ class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
         ],
       ),
     );
+  }
+
+  _targetItemBuilder2(BuildContext context, int index) {
+    return CartItemCard();
   }
 
   _targetItemBuilder1(BuildContext context, int index) {
@@ -507,54 +488,6 @@ class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
         ),
         child: Icon(icon, size: 18, color: Colors.deepPurple),
       ),
-    );
-  }
-
-  Widget _buildSettingsGroup(List<Widget> children) {
-    /*
-    return Container(
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: Colors.blueAccent,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        'aaaaaa',
-        style: const TextStyle(color: Colors.white, fontSize: 16),
-      ),
-    );
-     */
-
-    return Container(
-      //height: 50.0,
-      //margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
-        ],
-      ),
-      child: Column(children: children),
-    );
-  }
-
-  Widget _buildListTile(IconData icon, Color iconColor, String title, {bool showTrailing = true, bool isDestructive = false}) {
-    return ListTile(
-      leading: Container(
-        //padding: EdgeInsets.all(6),
-        decoration: BoxDecoration(
-          color: iconColor.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Icon(icon, color: iconColor),
-      ),
-      title: Text(
-        title,
-        style: TextStyle(color: isDestructive ? Colors.red : Colors.black87),
-      ),
-      trailing: showTrailing ? Icon(Icons.chevron_right, color: Colors.grey) : null,
-      onTap: () {},
     );
   }
 
@@ -795,6 +728,5 @@ class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
       ),
     );
   }
-
 
 }

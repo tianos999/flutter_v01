@@ -15,9 +15,10 @@ mixin UtilsMixin {
     );
   }
 
-  SizedBox sizedBox({double? height, Color? color}) {
+  SizedBox sizedBox({double? width, double? height, Color? color}) {
 
     height = height ?? 20.0;
+    width = width ?? double.infinity;
     color = color ?? Colors.white;
 
     return SizedBox(
