@@ -44,9 +44,6 @@ class _HomePageState extends State<HomePage> with UtilsMixin {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildPromoCard1(),
-          // sizedBox(height: 20),
-          // _buildSearch(),
-          // sizedBox(height: 20),
           _buildCategories(),
           SizedBox(height: 20),
           _popular(),
@@ -113,26 +110,30 @@ class _HomePageState extends State<HomePage> with UtilsMixin {
 
   Widget _buildPromoCard1() {
 
-    final String title = "Bienvenido a ThaMi Eventos";
-    final String description = "Tus snacks favoritos.";
-
     final Widget box01 = Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.deepPurple, Colors.purpleAccent],
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            AppColor.secondaryJewelBlue,
+            AppColor.secondaryJewelBlue
+          ],
+          //stops: [0.9, 0.1], // Controls distribution
+          //tileMode: TileMode.repeated,
         ),
       ),
       padding: const EdgeInsets.all(24.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(title, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+          Text('Bienvenido a ThaMi Eventos', style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
           const SizedBox(height: 10),
-          Text(description, style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 16)),
+          Text('Tus snacks favoritos.', style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 16)),
           const SizedBox(height: 10),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.white, foregroundColor: Colors.deepPurple),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.white, foregroundColor: AppColor.secondaryCodGray),
             onPressed: () {
               showToast("Button Clicked! Success");
               widget.onIndexChanged(Constants.SNACK_CART_CREATE_PAGE);
@@ -150,19 +151,40 @@ class _HomePageState extends State<HomePage> with UtilsMixin {
       ),
     );
 
-    final Widget box02 = ClipRRect(
-      borderRadius: BorderRadius.circular(20),
+    final Widget _clipRRect = ClipRRect(
+      borderRadius: BorderRadius.circular(10),
       child: Banner(
         message: 'PROMO',
         location: BannerLocation.topEnd,
-        color: Colors.redAccent,
+        color: AppColor.secondaryMySin,
         child: box01,
+        textStyle: const TextStyle(
+          color: AppColor.secondarySpanishRed,
+          fontSize: 10.0,
+          fontWeight: FontWeight.normal,
+        ),
       ),
     );
 
-    return Padding(
-      padding: const EdgeInsets.all(16.0), // Space outside the card
-      child: box02,
+    return Container(
+      margin: const EdgeInsets.only(
+        left: 16.0,
+        top: 16.0,
+        right: 16.0,
+        bottom: 20.0,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        boxShadow: [
+          BoxShadow(
+            color: AppColor.secondarySoftCharcoal.withAlpha(100),
+            blurRadius: 10.0,
+            spreadRadius: 2.0,
+            offset: const Offset(0, 9), // Changes position of shadow
+          ),
+        ],
+      ),
+      child: _clipRRect,
     );
   }
 
