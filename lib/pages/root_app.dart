@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:snack_cart/core/constants/constants.dart';
+import 'package:snack_cart/pages/demo_page.dart';
 import 'package:snack_cart/pages/event_details.dart';
 import 'package:snack_cart/pages/explore.dart';
 import 'package:snack_cart/pages/snack_cart/snack_cart_step_02.dart';
@@ -10,6 +11,7 @@ import 'package:snack_cart/pages/snack_cart/snack_cart_step_01.dart';
 import 'package:snack_cart/core/constants/color.dart';
 import 'package:snack_cart/pages/snack_cart/snack_cart_step_04.dart';
 import 'package:snack_cart/presentation/widgets/bottombar_item.dart';
+import 'package:snack_cart/presentation/widgets/custom_image.dart';
 
 import 'home.dart';
 
@@ -69,13 +71,19 @@ class _RootAppState extends State<RootApp> {
       "active_icon": Icons.add,
       "page": EventDetailsPage(),
     },
+    {
+      "icon": Icons.add,
+      "active_icon": Icons.add,
+      "page": DemoPage(),
+    },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: _appBar(),
+      body: _buildBody(),
       backgroundColor: AppColor.appBgColor,
-      body: _buildPage(),
       floatingActionButton: _buildBottomBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
       //drawer: const Drawer(child: Center(child: Text('Drawer'))),
@@ -88,7 +96,7 @@ class _RootAppState extends State<RootApp> {
     });
   }
 
-  Widget _buildPage() {
+  Widget _buildBody() {
     return IndexedStack(
       index: _currentIndex,
       children: List.generate(
@@ -169,6 +177,62 @@ class _RootAppState extends State<RootApp> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: _bottomBarItemList,
       ),
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      titleSpacing: 0,
+      leading: Padding(
+        padding: const EdgeInsets.only(
+          left: 10.0,
+          top: 10.0,
+          right: 0.0,
+          bottom: 10.0,
+        ),
+        child: Image.asset(
+          'assets/images/splash_logo_v01.png',
+          width: 35,
+          height: 35,
+          fit: BoxFit.contain, // Optional: scale the image
+        ),
+      ),
+      title: const Text(
+        'ThaMi Eventos',
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.white
+        )
+      ),
+      backgroundColor: Colors.blue,
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.notifications),
+          onPressed: () {
+            debugPrint('Notifications pressed');
+          },
+        ),
+        PopupMenuButton<String>(
+          onSelected: (value) {
+            debugPrint('Selected: $value');
+          },
+          itemBuilder: (context) => const [
+            PopupMenuItem(
+              value: 'Settings',
+              child: Text('Settings'),
+            ),
+            PopupMenuItem(
+              value: 'Help',
+              child: Text('Help'),
+            ),
+            PopupMenuItem(
+              value: 'Logout',
+              child: Text('Logout'),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

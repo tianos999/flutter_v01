@@ -16,56 +16,13 @@ class _SettingsPageState extends State<SettingsPage> with UtilsMixin {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        SliverAppBar(
-          backgroundColor: AppColor.appBgColor,
-          pinned: true,
-          snap: true,
-          floating: true,
-          title: _buildHeader(),
+        tianosAppBar(
+            data01: 'SPONSORED CONTENT',
+            data02: 'Configuración',
+            icon: Icons.settings_applications,
+            onPressed: () {}
         ),
         SliverToBoxAdapter(child: _buildBody())
-      ],
-    );
-  }
-
-  _buildHeader() {
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Hola!",
-                  style: TextStyle(
-                    color: AppColor.darker,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "Alfredo Bringas",
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-            CustomImage(
-              profile,
-              width: 35,
-              height: 35,
-              trBackground: true,
-              borderColor: AppColor.primary,
-              radius: 10,
-            ),
-          ],
-        ),
       ],
     );
   }
@@ -75,7 +32,7 @@ class _SettingsPageState extends State<SettingsPage> with UtilsMixin {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          sizedBox(height: 20),
+          SizedBox(height: 20),
           // Settings Group 1
           _buildSettingsGroup([
             _buildListTile(Icons.person_outline, Colors.orange, 'Profile'),

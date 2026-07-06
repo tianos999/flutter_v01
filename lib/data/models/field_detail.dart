@@ -29,7 +29,7 @@ class FieldDetail extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             border: Border.all(color: const Color(0xffE7E0F0)),
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(7),
           ),
           child: child,
         )

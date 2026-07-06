@@ -1,66 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:snack_cart/core/utils/utils_mixin.dart';
+import 'package:snack_cart/data/models/topping.dart';
 
 class CartItemCard extends StatefulWidget {
-  const CartItemCard({super.key});
+
+  final Topping topping;
+  final VoidCallback onRemove;
+
+  const CartItemCard({
+    super.key,
+    required this.topping,
+    required this.onRemove,
+  });
 
   @override
   State<CartItemCard> createState() => _CartItemCardState();
 }
 
-class _CartItemCardState extends State<CartItemCard> {
+class _CartItemCardState extends State<CartItemCard> with UtilsMixin {
+
   int quantity = 1;
-  final double unitPrice = 8;
+  late final double unitPrice = widget.topping.price;
 
   @override
   Widget build(BuildContext context) {
+
     final total = quantity * unitPrice;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 14),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: const Color(0xFFEAE5F4),
         ),
       ),
       child: Row(
         children: [
+
           // Coffee Icon
           Container(
-            width: 54,
-            height: 54,
+            width: 50,
+            height: 50,
             decoration: BoxDecoration(
               color: const Color(0xFFF6F4FB),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(12),
             ),
             alignment: Alignment.center,
-            child: const Text(
-              "☕",
-              style: TextStyle(fontSize: 28),
+            child: Icon(
+              widget.topping.icon,
+              color: widget.topping.color,
+              size: 28,
             ),
           ),
 
-          const SizedBox(width: 16),
+          SizedBox(width: 16),
 
           // Product Info
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
-                  "Café",
-                  style: TextStyle(
-                    fontSize: 24,
+                  widget.topping.name,
+                  style: const TextStyle(
+                    fontSize: 13,
                     fontWeight: FontWeight.w700,
                     color: Color(0xFF2F1E56),
                   ),
                 ),
                 SizedBox(height: 4),
                 Text(
-                  "S/ 8 c/u",
+                  "S/ ${widget.topping.price.toStringAsFixed(1)} c/u",
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 13,
                     color: Color(0xFF8D7BAE),
                   ),
                 ),
@@ -76,17 +90,19 @@ class _CartItemCardState extends State<CartItemCard> {
                 onTap: () {
                   if (quantity > 1) {
                     setState(() => quantity--);
+                  } else if (quantity == 1) {
+                    widget.onRemove();
                   }
                 },
               ),
 
               SizedBox(
-                width: 48,
+                width: 30,
                 child: Center(
                   child: Text(
                     "$quantity",
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.w700,
                       color: Color(0xFF2F1E56),
                     ),
@@ -103,13 +119,13 @@ class _CartItemCardState extends State<CartItemCard> {
             ],
           ),
 
-          const SizedBox(width: 24),
+          SizedBox(width: 12),
 
           // Total Price
           Text(
             "S/${total.toStringAsFixed(0)}",
             style: const TextStyle(
-              fontSize: 24,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Color(0xFF2F1E56),
             ),
@@ -135,10 +151,10 @@ class _QuantityButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(16),
       onTap: onTap,
       child: Container(
-        width: 56,
-        height: 56,
+        width: 35,
+        height: 35,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(10),
           border: Border.all(
             color: const Color(0xFFD7C9F3),
             width: 2,
@@ -147,7 +163,7 @@ class _QuantityButton extends StatelessWidget {
         child: Icon(
           icon,
           color: const Color(0xFF7B57D1),
-          size: 28,
+          size: 25,
         ),
       ),
     );

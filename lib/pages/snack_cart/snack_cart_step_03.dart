@@ -29,12 +29,11 @@ class _SnackCartStep03State extends State<SnackCartStep03> with UtilsMixin {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        SliverAppBar(
-          backgroundColor: AppColor.appBgColor,
-          pinned: true,
-          snap: true,
-          floating: true,
-          title: _buildHeader(),
+        tianosAppBar(
+            data01: 'SPONSORED CONTENT',
+            data02: 'Realizar el pago',
+            icon: Icons.check_circle_outline,
+            onPressed: () {}
         ),
         SliverToBoxAdapter(child: _buildBody())
       ],
@@ -46,15 +45,10 @@ class _SnackCartStep03State extends State<SnackCartStep03> with UtilsMixin {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          sizedBox(height: 20),
-          _title(),
-          sizedBox(height: 20),
           _creditCardWidget(),
-          sizedBox(height: 20),
           _creditCardForm(),
-          sizedBox(height: 10),
           _payNow(),
-          sizedBox(height: 70),
+          SizedBox(height: 70),
         ],
       ),
     );
@@ -69,17 +63,6 @@ class _SnackCartStep03State extends State<SnackCartStep03> with UtilsMixin {
       showBackView: isCvvFocused, // Handles auto-flip
       onCreditCardWidgetChange: (brand) {},
     );
-  }
-
-  _creditCardForm1() {
-    return Material( // <--- Explicitly provides Material styling
-      type: MaterialType.transparency, // Optional: keeps background transparent
-      child: _creditCardForm()
-    );
-  }
-
-  _creditCardForm2() {
-
   }
 
   _creditCardForm() {
@@ -153,37 +136,6 @@ class _SnackCartStep03State extends State<SnackCartStep03> with UtilsMixin {
     );
 
     return form;
-  }
-
-  _buildHeader() {
-    return Row(
-      children: [
-        Expanded(
-          child: CustomTextBox(
-            hint: "Buscar...",
-            prefix: Icon(Icons.search, color: Colors.grey),
-          ),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        IconBox(
-          child: Icon(Icons.filter_list_rounded, color: Colors.white),
-          bgColor: AppColor.secondary,
-          radius: 10,
-        )
-      ],
-    );
-  }
-
-  _title() {
-    return const Padding(
-      padding: EdgeInsets.only(left: 15),
-      child: Text(
-        "Realizar el pago",
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-      ),
-    );
   }
 
   _payNow() {

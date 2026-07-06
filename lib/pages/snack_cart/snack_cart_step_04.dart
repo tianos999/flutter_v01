@@ -24,56 +24,13 @@ class _SnackCartStep04State extends State<SnackCartStep04> with UtilsMixin {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        SliverAppBar(
-          backgroundColor: AppColor.appBgColor,
-          pinned: true,
-          snap: true,
-          floating: true,
-          title: _buildHeader(),
+        tianosAppBar(
+            data01: 'SPONSORED CONTENT',
+            data02: 'Pago confirmado',
+            icon: Icons.receipt_long,
+            onPressed: () {}
         ),
         SliverToBoxAdapter(child: _buildBody())
-      ],
-    );
-  }
-
-  _buildHeader() {
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Hola!",
-                  style: TextStyle(
-                    color: AppColor.darker,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "Alfredo Bringas",
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-            CustomImage(
-              profile,
-              width: 35,
-              height: 35,
-              trBackground: true,
-              borderColor: AppColor.primary,
-              radius: 10,
-            ),
-          ],
-        ),
       ],
     );
   }
@@ -83,30 +40,12 @@ class _SnackCartStep04State extends State<SnackCartStep04> with UtilsMixin {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          sizedBox(height: 20),
-          _title(),
-          sizedBox(height: 20),
+          SizedBox(height: 20),
           _paymentConfirmed(),
-          sizedBox(height: 10),
+          SizedBox(height: 10),
           _viewMyOrders(),
-          sizedBox(height: 80),
+          SizedBox(height: 80),
         ],
-      ),
-    );
-  }
-
-  _title() {
-    return const Padding(
-      //padding: EdgeInsets.only(left: 15),
-      padding: const EdgeInsets.only(
-        left: 15.0,
-        top: 0.0,
-        right: 0.0,
-        bottom: 0.0,
-      ),
-      child: Text(
-        "Pago confirmado",
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -124,7 +63,7 @@ class _SnackCartStep04State extends State<SnackCartStep04> with UtilsMixin {
         child: Column(
           children: [
             _successCircle(),
-            sizedBox(height: 30),
+            SizedBox(height: 30),
             const Text(
               "¡Pago confirmado!",
               style: TextStyle(
@@ -133,7 +72,7 @@ class _SnackCartStep04State extends State<SnackCartStep04> with UtilsMixin {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            sizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               "Tu carrito snack está reservado 🎉",
               style: TextStyle(
@@ -141,9 +80,9 @@ class _SnackCartStep04State extends State<SnackCartStep04> with UtilsMixin {
                 fontSize: 20,
               ),
             ),
-            sizedBox(height: 35),
+            SizedBox(height: 35),
             _infoRow(),
-            sizedBox(height: 34),
+            SizedBox(height: 34),
             Text(
               "Recibirás la factura por correo · pago procesado con tarjeta",
               textAlign: TextAlign.center,
@@ -179,15 +118,42 @@ class _SnackCartStep04State extends State<SnackCartStep04> with UtilsMixin {
             label: "Orden",
             value: "#CS-1043",
           ),
-          sizedBox(height: 22, color: AppColor.cartDropBg.withOpacity(.10)),
+          SizedBox(
+            height: 22,
+            width: double.infinity,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: AppColor.cartDropBg.withOpacity(.10),
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+              ),
+            ),
+          ),
           const InfoRow(
             icon: Icons.calendar_today_outlined,
             label: "Fecha del evento",
             value: "28 jun 2026",
           ),
-          sizedBox(height: 22, color: AppColor.cartDropBg.withOpacity(.10)),
+          SizedBox(
+            height: 22,
+            width: double.infinity,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: AppColor.cartDropBg.withOpacity(.10),
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+              ),
+            ),
+          ),
           const EmployeeRow(),
-          sizedBox(height: 22, color: AppColor.cartDropBg.withOpacity(.10)),
+          SizedBox(
+            height: 22,
+            width: double.infinity,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: AppColor.cartDropBg.withOpacity(.10),
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+              ),
+            ),
+          ),
           const InfoRow(
             icon: Icons.payments_outlined,
             label: "Total pagado",

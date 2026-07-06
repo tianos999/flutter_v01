@@ -25,66 +25,15 @@ class _HomePageState extends State<HomePage> with UtilsMixin {
 
   int _selectedCategory = 0;
 
-  // Don't forget to dispose of it!
   @override
   void dispose() {
-    //indexNotifier.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(slivers: <Widget>[
-        SliverAppBar(
-          backgroundColor: AppColor.appBgColor,
-          pinned: true,
-          snap: true,
-          floating: true,
-          title: _buildHeader(),
-        ),
         SliverToBoxAdapter(child: _buildBody())
-      ],
-    );
-  }
-
-  _buildHeader() {
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Hola!",
-                  style: TextStyle(
-                    color: AppColor.darker,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "Alfredo Bringas",
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-            CustomImage(
-              profile,
-              width: 35,
-              height: 35,
-              trBackground: true,
-              borderColor: AppColor.primary,
-              radius: 10,
-            ),
-          ],
-        ),
       ],
     );
   }
@@ -99,19 +48,19 @@ class _HomePageState extends State<HomePage> with UtilsMixin {
           // _buildSearch(),
           // sizedBox(height: 20),
           _buildCategories(),
-          sizedBox(height: 20),
+          SizedBox(height: 20),
           _popular(),
-          sizedBox(height: 20),
+          SizedBox(height: 20),
           _buildPopulars(),
-          sizedBox(height: 20),
+          SizedBox(height: 20),
           _recommended(),
-          sizedBox(height: 20),
+          SizedBox(height: 20),
           _buildRecommended(),
-          sizedBox(height: 20),
+          SizedBox(height: 20),
           _recent(),
-          sizedBox(height: 20),
+          SizedBox(height: 20),
           _buildRecent(),
-          sizedBox(height: 100),
+          SizedBox(height: 100),
         ],
       ),
     );

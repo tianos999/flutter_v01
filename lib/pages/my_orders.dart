@@ -17,56 +17,13 @@ class _MyOrdersPageState extends State<MyOrdersPage> with UtilsMixin {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        SliverAppBar(
-          backgroundColor: AppColor.appBgColor,
-          pinned: true,
-          snap: true,
-          floating: true,
-          title: _buildHeader(),
+        tianosAppBar(
+            data01: 'SPONSORED CONTENT',
+            data02: 'Mis pedidos',
+            icon: Icons.receipt_long,
+            onPressed: () {}
         ),
         SliverToBoxAdapter(child: _buildBody())
-      ],
-    );
-  }
-
-  _buildHeader() {
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Hola!",
-                  style: TextStyle(
-                    color: AppColor.darker,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "Alfredo Bringas",
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-            CustomImage(
-              profile,
-              width: 35,
-              height: 35,
-              trBackground: true,
-              borderColor: AppColor.primary,
-              radius: 10,
-            ),
-          ],
-        ),
       ],
     );
   }
@@ -146,7 +103,7 @@ class _MyOrdersPageState extends State<MyOrdersPage> with UtilsMixin {
                         fontSize: 15.0,
                     )
                 ),
-                sizedBox(height: 8.0),
+                SizedBox(height: 8.0),
                 const Text(
                     'Aniversario · 20 dic · S/ 2,100',
                     style: TextStyle(

@@ -23,56 +23,13 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        SliverAppBar(
-          backgroundColor: AppColor.appBgColor,
-          pinned: true,
-          snap: true,
-          floating: true,
-          title: _buildHeader(),
+        tianosAppBar(
+            data01: 'SPONSORED CONTENT',
+            data02: 'Resumen de la orden',
+            icon: Icons.credit_card,
+            onPressed: () {}
         ),
         SliverToBoxAdapter(child: _buildBody())
-      ],
-    );
-  }
-
-  _buildHeader() {
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Hola!",
-                  style: TextStyle(
-                    color: AppColor.darker,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "Alfredo Bringas",
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-            CustomImage(
-              profile,
-              width: 35,
-              height: 35,
-              trBackground: true,
-              borderColor: AppColor.primary,
-              radius: 10,
-            ),
-          ],
-        ),
       ],
     );
   }
@@ -82,28 +39,14 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          sizedBox(height: 20),
-          _title(),
-          sizedBox(height: 20),
-          _topicsCard(),
-          sizedBox(height: 18),
+          // _topicsCard(),
           _eventDetails(),
-          sizedBox(height: 18),
+          SizedBox(height: 18),
           _totalCard(),
-          sizedBox(height: 18),
+          SizedBox(height: 18),
           _continueWithPayment(),
-          sizedBox(height: 70),
+          SizedBox(height: 70),
         ],
-      ),
-    );
-  }
-
-  _title() {
-    return const Padding(
-      padding: EdgeInsets.only(left: 15),
-      child: Text(
-        "Resumen de la orden",
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -161,7 +104,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                       Icons.receipt_long,
                       color: AppColor.orange
                     ),
-                    sizedBox(width: 10),
+                    SizedBox(width: 10),
                     const Text(
                       "Topics seleccionados",
                       style: TextStyle(
@@ -172,14 +115,14 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                     ),
                   ],
                 ),
-                sizedBox(height: 18),
+                SizedBox(height: 18),
                 Row(
                   children: [
                     const Text(
                       "☕",
                       style: TextStyle(fontSize: 24),
                     ),
-                    sizedBox(width: 12),
+                    SizedBox(width: 12),
                     const Expanded(
                       child: Text(
                         "Café ×1",
@@ -211,8 +154,14 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
     return Card(
       elevation: 0,
       color: Colors.white,
+      margin: EdgeInsets.only(
+        left: 10.0,
+        top: 0.0,
+        right: 10.0,
+        bottom: 0.0,
+      ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(10),
         side: const BorderSide(color: AppColor.cartDropBorder),
       ),
       child: Padding(
@@ -228,7 +177,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                 fontSize: 18,
               ),
             ),
-            sizedBox(height: 28),
+            SizedBox(height: 28),
             Row(
               children: [
                 Expanded(
@@ -247,7 +196,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                     ),
                   ),
                 ),
-                sizedBox(width: 16),
+                SizedBox(width: 16),
                 Expanded(
                   child: FieldDetail(
                     label: "INVITADOS",
@@ -259,7 +208,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                 ),
               ],
             ),
-            sizedBox(height: 20),
+            SizedBox(height: 20),
             FieldDetail(
               label: "DIRECCIÓN DEL EVENTO",
               child: const Text(
@@ -277,8 +226,14 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
     return Card(
       elevation: 0,
       color: Colors.white,
+      margin: EdgeInsets.only(
+        left: 10.0,
+        top: 0.0,
+        right: 10.0,
+        bottom: 0.0,
+      ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(10),
         side: const BorderSide(color: AppColor.cartDropBorder),
       ),
       child: Padding(
@@ -286,13 +241,13 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
         child: Column(
           children: [
             _priceRow("Subtotal", "S/ 8"),
-            sizedBox(height: 14),
+            SizedBox(height: 14),
             _priceRow("Renta de carrito + empleado", "S/ 150"),
-            sizedBox(height: 14),
+            SizedBox(height: 14),
             _priceRow("IGV (18%)", "S/ 28"),
-            sizedBox(height: 18),
+            SizedBox(height: 18),
             const Divider(),
-            sizedBox(height: 12),
+            SizedBox(height: 12),
             Row(
               children: const [
                 Expanded(
@@ -308,7 +263,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                 Text(
                   "S/ 186",
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: AppColor.primary,
                   ),

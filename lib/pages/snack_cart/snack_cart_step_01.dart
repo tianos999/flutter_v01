@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:snack_cart/core/constants/constants.dart';
 import 'package:snack_cart/core/utils/utils_mixin.dart';
 import 'package:snack_cart/data/models/topping.dart';
@@ -21,7 +20,6 @@ class SnackCartStep01 extends StatefulWidget {
 class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
   final List<Topping> _acceptedItems = [];
 
-  // Available toppings to drag
   final List<Topping> _toppingsItems = [
     Topping(
       name: 'Brownies',
@@ -103,56 +101,13 @@ class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        SliverAppBar(
-          backgroundColor: AppColor.appBgColor,
-          pinned: true,
-          snap: true,
-          floating: true,
-          title: _buildHeader(),
+        tianosAppBar(
+          data01: 'SPONSORED CONTENT',
+          data02: 'Arma tu carrito snack',
+          icon: Icons.shopping_cart,
+          onPressed: () {}
         ),
         SliverToBoxAdapter(child: _buildBody())
-      ],
-    );
-  }
-
-  _buildHeader() {
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Hola!",
-                  style: TextStyle(
-                    color: AppColor.darker,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "Alfredo Bringas",
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-            CustomImage(
-              profile,
-              width: 35,
-              height: 35,
-              trBackground: true,
-              borderColor: AppColor.primary,
-              radius: 10,
-            ),
-          ],
-        ),
       ],
     );
   }
@@ -162,23 +117,12 @@ class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _title(),
           _snackCartDraggable(),
-          sizedBox(height: 10),
+          SizedBox(height: 10),
           _snackCartDragTarget(),
           _proceedWithOrder(),
-          sizedBox(height: 70),
+          SizedBox(height: 70),
         ],
-      ),
-    );
-  }
-
-  _title() {
-    return const Padding(
-      padding: EdgeInsets.only(left: 15),
-      child: Text(
-        "Arma tu carrito Snack",
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -287,17 +231,23 @@ class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
 
     if (!_acceptedItems.isEmpty) {
       _child = GridView.builder(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(4),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,       // Number of columns in the grid
-          crossAxisSpacing: 10.0,  // Horizontal spacing between grid items
+          crossAxisSpacing: 0.0,  // Horizontal spacing between grid items
           mainAxisSpacing: 10.0,   // Vertical spacing between grid items
           childAspectRatio: 4.1,  // Ratio of item width to item height
         ),
         itemCount: _acceptedItems.length,
         itemBuilder: (context, index) {
-          //return _targetItemBuilder(context, index);
-          return _targetItemBuilder2(context, index);
+          return CartItemCard(
+            topping: _acceptedItems[index],
+            onRemove: () {
+              setState(() {
+                _acceptedItems.removeAt(index);
+              });
+            },
+          );
         },
       );
     }
@@ -318,176 +268,6 @@ class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
           ),
         ),
         child: _child
-    );
-  }
-
-  _targetAnimatedContainer(BuildContext context, int index) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.fastOutSlowIn,
-      padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
-      margin: EdgeInsets.only(right: 5, left: 0, top: 0, bottom: 0),
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: AppColor.shadowColor.withOpacity(0.1),
-            spreadRadius: .5,
-            blurRadius: .5,
-            offset: Offset(0, 1), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Icon(
-            _acceptedItems[index].icon,
-            color: _acceptedItems[index].color,
-            size: 30.0,
-          ),
-          /*
-          FaIcon(
-            FontAwesomeIcons.iceCream,
-            size: 25,
-            color: Colors.black,
-          ),
-           */
-        ],
-      ),
-    );
-  }
-
-  _targetItemBuilder2(BuildContext context, int index) {
-    return CartItemCard();
-  }
-
-  _targetItemBuilder1(BuildContext context, int index) {
-
-    Widget row = Row(
-      mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        /*
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
-                width: 70,
-                height: 70,
-                fit: BoxFit.cover,
-              ),
-            ),
-             */
-        _targetAnimatedContainer(context, index),
-        Expanded(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(6, 0, 0, 0),
-                child: Text(
-                  _acceptedItems[index].name,
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue,
-                    letterSpacing: 0.2,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 2, 0, 0),
-                child: Text(
-                  "S/ ${_acceptedItems[index].price.toStringAsFixed(2)}",
-                ),
-              ),
-            ],
-          ),
-        ),
-        _buildStepperButton(Icons.remove, () {
-          // Handle add button press
-        }),
-        Container(
-          margin: const EdgeInsets.only(
-            left: 5.0,
-            top: 0.0,
-            right: 5.0,
-            bottom: 0.0,
-          ),
-          child: const Text(
-            '1',
-            style: TextStyle(
-              fontSize: 17.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.black26,
-              letterSpacing: 0.2,
-            ),
-          ),
-        ),
-        _buildStepperButton(Icons.add, () {
-          // Handle remove button press
-        }),
-        Container(
-          margin: const EdgeInsets.only(
-            left: 10.0,
-            top: 0.0,
-            right: 0.0,
-            bottom: 0.0,
-          ),
-          child: Text(
-            "S/ ${_acceptedItems[index].price.toStringAsFixed(2)}",
-            style: TextStyle(
-              fontSize: 13.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.black26,
-              letterSpacing: 0.2,
-            ),
-          ),
-        ),
-      ],
-    );
-
-    return Container(
-      //height: 50.0,
-      //margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
-        ],
-      ),
-      child: Column(children: [row]),
-    );
-
-    /*
-    return Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 12, 8),
-        child: row
-      );
-     */
-  }
-
-  // Custom OutlinedButton for the +/- controls
-  Widget _buildStepperButton(IconData icon, VoidCallback onPressed) {
-    return SizedBox(
-      width: 32,
-      height: 32,
-      child: OutlinedButton(
-        onPressed: onPressed,
-        style: OutlinedButton.styleFrom(
-          padding: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          side: BorderSide(color: Colors.greenAccent),
-          backgroundColor: Colors.blue[50], // Sets background color
-          foregroundColor: Colors.blue,     // Sets text and icon color
-        ),
-        child: Icon(icon, size: 18, color: Colors.deepPurple),
-      ),
     );
   }
 
