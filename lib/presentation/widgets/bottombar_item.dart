@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 
 class BottomBarItem extends StatelessWidget {
   const BottomBarItem(
     this.icon, {
     this.onTap,
-    this.color = AppColor.inActiveColor,
-    this.activeColor = AppColor.primary,
+    this.color = AppColor.primaryMagenta,
+    this.activeColor = AppColor.blue,
     this.isActive = false,
     this.isNotified = false,
   });
@@ -32,7 +32,7 @@ class BottomBarItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
                 color: isActive
-                    ? AppColor.primary.withOpacity(.1)
+                    ? AppColor.primaryMagenta.withOpacity(.1)
                     : Colors.transparent,
               ),
               child: Icon(

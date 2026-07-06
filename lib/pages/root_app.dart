@@ -8,7 +8,7 @@ import 'package:snack_cart/pages/snack_cart/snack_cart_step_03.dart';
 import 'package:snack_cart/pages/my_orders.dart';
 import 'package:snack_cart/pages/settings.dart';
 import 'package:snack_cart/pages/snack_cart/snack_cart_step_01.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 import 'package:snack_cart/pages/snack_cart/snack_cart_step_04.dart';
 import 'package:snack_cart/presentation/widgets/bottombar_item.dart';
 import 'package:snack_cart/presentation/widgets/custom_image.dart';
@@ -83,7 +83,7 @@ class _RootAppState extends State<RootApp> {
     return Scaffold(
       appBar: _appBar(),
       body: _buildBody(),
-      backgroundColor: AppColor.appBgColor,
+      backgroundColor: Colors.white,
       floatingActionButton: _buildBottomBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
       //drawer: const Drawer(child: Center(child: Text('Drawer'))),
@@ -118,7 +118,7 @@ class _RootAppState extends State<RootApp> {
               _currentIndex = index;
             });
           },
-          backgroundColor: Colors.indigoAccent, // TikTok pinkish-red
+          backgroundColor: AppColor.primaryMagenta,
           foregroundColor: Colors.white,
           elevation: 15.0,
           hoverElevation: 8.0,     // Hovering state shadow
@@ -139,7 +139,7 @@ class _RootAppState extends State<RootApp> {
         BottomBarItem bottomBarItem = BottomBarItem(
           _currentIndex == index ? _barItems[index]["active_icon"] : _barItems[index]["icon"],
           isActive: _currentIndex == index,
-          activeColor: AppColor.primary,
+          //activeColor: AppColor.primaryMagenta,
           onTap: () {
             setState(() {
               _currentIndex = index;
@@ -155,11 +155,11 @@ class _RootAppState extends State<RootApp> {
     }
 
     final BoxDecoration _boxDecoration = BoxDecoration(
-      color: AppColor.bottomBarColor,
+      color: AppColor.secondaryDuskyPeriwinkle,
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
         BoxShadow(
-          color: AppColor.shadowColor.withOpacity(0.1),
+          color: AppColor.secondaryCodGray.withOpacity(0.1),
           blurRadius: 1,
           spreadRadius: 1,
           offset: Offset(0, 1),
@@ -200,35 +200,43 @@ class _RootAppState extends State<RootApp> {
       title: const Text(
         'ThaMi Eventos',
         style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: Colors.white
+          fontSize: 18,
+          fontWeight: FontWeight.normal,
+          color: AppColor.secondaryCodGray
         )
       ),
-      backgroundColor: Colors.blue,
+      backgroundColor: AppColor.secondaryDuskyPeriwinkle,
       actions: [
         IconButton(
           icon: const Icon(Icons.notifications),
+          color: AppColor.secondaryCodGray,
           onPressed: () {
             debugPrint('Notifications pressed');
           },
         ),
         PopupMenuButton<String>(
+          iconColor: AppColor.secondaryCodGray,
           onSelected: (value) {
             debugPrint('Selected: $value');
           },
           itemBuilder: (context) => const [
             PopupMenuItem(
-              value: 'Settings',
-              child: Text('Settings'),
+              child: Text(
+                'Settings',
+                style: TextStyle(color: AppColor.secondaryCodGray),
+              ),
             ),
             PopupMenuItem(
-              value: 'Help',
-              child: Text('Help'),
+              child: Text(
+                'Help',
+                style: TextStyle(color: AppColor.secondaryCodGray),
+              ),
             ),
             PopupMenuItem(
-              value: 'Logout',
-              child: Text('Logout'),
+              child: Text(
+                'Logout',
+                style: TextStyle(color: AppColor.secondaryCodGray),
+              ),
             ),
           ],
         ),

@@ -5,7 +5,7 @@ import 'package:snack_cart/data/models/employee_row.dart';
 import 'package:snack_cart/data/models/info_row.dart';
 import 'package:snack_cart/data/models/topping.dart';
 import 'package:snack_cart/pages/snack_cart/snack_cart_step_03.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 import 'package:snack_cart/presentation/widgets/custom_image.dart';
 import 'package:snack_cart/core/utils/data.dart';
 
@@ -24,7 +24,7 @@ class _SnackCartStep04State extends State<SnackCartStep04> with UtilsMixin {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        tianosAppBar(
+        tianosSliverAppBar(
             data01: 'SPONSORED CONTENT',
             data02: 'Pago confirmado',
             icon: Icons.receipt_long,
@@ -104,10 +104,10 @@ class _SnackCartStep04State extends State<SnackCartStep04> with UtilsMixin {
         vertical: 22,
       ),
       decoration: BoxDecoration(
-        color: AppColor.cartDropBg.withOpacity(.10),
+        color: AppColor.secondaryMySin.withOpacity(.10),
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
-          color: AppColor.cartDropBorder,
+          color: AppColor.secondaryCodGray,
           //color: AppColor.cartDropV02.withOpacity(.08),
         ),
       ),
@@ -123,7 +123,7 @@ class _SnackCartStep04State extends State<SnackCartStep04> with UtilsMixin {
             width: double.infinity,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: AppColor.cartDropBg.withOpacity(.10),
+                color: AppColor.secondaryMySin.withOpacity(.10),
                 borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
             ),
@@ -138,7 +138,7 @@ class _SnackCartStep04State extends State<SnackCartStep04> with UtilsMixin {
             width: double.infinity,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: AppColor.cartDropBg.withOpacity(.10),
+                color: AppColor.secondaryMySin.withOpacity(.10),
                 borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
             ),
@@ -149,7 +149,7 @@ class _SnackCartStep04State extends State<SnackCartStep04> with UtilsMixin {
             width: double.infinity,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: AppColor.cartDropBg.withOpacity(.10),
+                color: AppColor.secondaryMySin.withOpacity(.10),
                 borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
             ),
@@ -201,7 +201,7 @@ class _SnackCartStep04State extends State<SnackCartStep04> with UtilsMixin {
       label: const Text("Ver mis órdenes"),
       iconAlignment: IconAlignment.end, // Positions icon to the right of text
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.primary, // Background color
+        backgroundColor: AppColor.primaryMagenta, // Background color
         foregroundColor: Colors.white,    // Text and icon color
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         shape: RoundedRectangleBorder(

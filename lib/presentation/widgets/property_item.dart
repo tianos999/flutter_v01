@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 import 'package:snack_cart/core/constants/constants.dart';
 
 import 'custom_image.dart';
@@ -22,7 +22,7 @@ class PropertyItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: AppColor.shadowColor.withOpacity(0.1),
+            color: AppColor.secondaryCodGray.withOpacity(0.1),
             spreadRadius: .5,
             blurRadius: 1,
             offset: Offset(0, 1), // changes position of shadow
@@ -87,7 +87,7 @@ class PropertyItem extends StatelessWidget {
           children: [
             Icon(
               Icons.place_outlined,
-              color: AppColor.darker,
+              color: AppColor.secondarySoftCharcoal,
               size: 13,
             ),
             const SizedBox(
@@ -95,7 +95,7 @@ class PropertyItem extends StatelessWidget {
             ),
             Text(
               data["location"],
-              style: TextStyle(fontSize: 13, color: AppColor.darker),
+              style: TextStyle(fontSize: 13, color: AppColor.secondarySoftCharcoal),
             ),
           ],
         ),
@@ -106,7 +106,7 @@ class PropertyItem extends StatelessWidget {
           data["price"],
           style: TextStyle(
             fontSize: 15,
-            color: AppColor.primary,
+            color: AppColor.primaryMagenta,
             fontWeight: FontWeight.w500,
           ),
         ),

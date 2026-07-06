@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:snack_cart/core/constants/constants.dart';
 import 'package:snack_cart/core/utils/utils_mixin.dart';
 import 'package:snack_cart/data/models/topping.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 import 'package:snack_cart/pages/snack_cart/cart_item_card.dart';
 import 'package:snack_cart/presentation/widgets/custom_image.dart';
 import 'package:snack_cart/core/utils/data.dart';
@@ -101,7 +101,7 @@ class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        tianosAppBar(
+        tianosSliverAppBar(
           data01: 'SPONSORED CONTENT',
           data02: 'Arma tu carrito snack',
           icon: Icons.shopping_cart,
@@ -187,7 +187,7 @@ class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
       label: const Text("Proceda con la orden"),
       iconAlignment: IconAlignment.end, // Positions icon to the right of text
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.primary, // Background color
+        backgroundColor: AppColor.primaryMagenta, // Background color
         foregroundColor: Colors.white,    // Text and icon color
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
         shape: RoundedRectangleBorder(
@@ -256,11 +256,11 @@ class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
         height: 300,
         width: 350,
         decoration: BoxDecoration(
-          color: candidateData.isEmpty ? Colors.grey.shade200 : AppColor.cartDropBg,
+          color: candidateData.isEmpty ? Colors.grey.shade200 : AppColor.secondaryMySin,
           borderRadius: BorderRadius.circular(8),
           // border: Border.all(color: AppColor.cartDropV01),
           border: DashedBorder(
-            color: AppColor.cartDropBorder,     // Border color
+            color: AppColor.secondaryCodGray,     // Border color
             width: 2.0,            // Border thickness
             dashLength: 6.0,       // Dash length
             dashGap: 3.0,          // Gap length
@@ -272,18 +272,6 @@ class _SnackCartStep01State extends State<SnackCartStep01> with UtilsMixin {
   }
 
   _draggable(Topping topping) {
-
-    Widget feedback = Material(
-      color: Colors.transparent,
-      child: CircleAvatar(
-        backgroundColor: topping.color,
-        radius: 30,
-        child: Text(
-          topping.name,
-          style: const TextStyle(color: Colors.white),
-        ),
-      ),
-    );
 
     Widget childWhenDragging = Opacity(
       opacity: 0.5,

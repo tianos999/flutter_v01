@@ -4,7 +4,7 @@ import 'package:snack_cart/core/utils/utils_mixin.dart';
 import 'package:snack_cart/data/models/field_detail.dart';
 import 'package:snack_cart/data/models/topping.dart';
 import 'package:snack_cart/pages/snack_cart/snack_cart_step_03.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 import 'package:snack_cart/presentation/widgets/custom_image.dart';
 import 'package:snack_cart/core/utils/data.dart';
 
@@ -23,7 +23,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        tianosAppBar(
+        tianosSliverAppBar(
             data01: 'SPONSORED CONTENT',
             data02: 'Resumen de la orden',
             icon: Icons.credit_card,
@@ -74,8 +74,8 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        AppColor.primary,
-                        AppColor.primary,
+                        AppColor.primaryMagenta,
+                        AppColor.primaryMagenta,
                         Colors.white,
                         Colors.white,
                       ],
@@ -110,7 +110,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
-                        color: AppColor.primary,
+                        color: AppColor.primaryMagenta,
                       ),
                     ),
                   ],
@@ -128,7 +128,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                         "Café ×1",
                         style: TextStyle(
                           fontSize: 18,
-                          color: AppColor.primary,
+                          color: AppColor.primaryMagenta,
                         ),
                       ),
                     ),
@@ -137,7 +137,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        color: AppColor.primary,
+                        color: AppColor.primaryMagenta,
                       ),
                     )
                   ],
@@ -162,7 +162,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
-        side: const BorderSide(color: AppColor.cartDropBorder),
+        side: const BorderSide(color: AppColor.secondaryCodGray),
       ),
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -172,7 +172,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
             const Text(
               "Detalles del evento",
               style: TextStyle(
-                color: AppColor.primary,
+                color: AppColor.primaryMagenta,
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
@@ -234,7 +234,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
-        side: const BorderSide(color: AppColor.cartDropBorder),
+        side: const BorderSide(color: AppColor.secondaryCodGray),
       ),
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -256,7 +256,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
-                      color: AppColor.primary,
+                      color: AppColor.primaryMagenta,
                     ),
                   ),
                 ),
@@ -265,7 +265,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
-                    color: AppColor.primary,
+                    color: AppColor.primaryMagenta,
                   ),
                 )
               ],
@@ -292,7 +292,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
           value,
           style: const TextStyle(
             fontSize: 16,
-            color: AppColor.primary,
+            color: AppColor.primaryMagenta,
           ),
         )
       ],
@@ -309,7 +309,7 @@ class _SnackCartStep02State extends State<SnackCartStep02> with UtilsMixin {
       label: const Text("Continuar al pago"),
       iconAlignment: IconAlignment.end, // Positions icon to the right of text
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.primary, // Background color
+        backgroundColor: AppColor.primaryMagenta, // Background color
         foregroundColor: Colors.white,    // Text and icon color
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         shape: RoundedRectangleBorder(

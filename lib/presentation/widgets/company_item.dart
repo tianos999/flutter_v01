@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 
 class CompanyItem extends StatelessWidget {
+
   const CompanyItem({
     Key? key,
     required this.data,
     this.bgColor = Colors.white,
-    this.color = AppColor.primary,
+    this.color = AppColor.red,
     this.selected = false,
     this.onTap,
   }) : super(key: key);
@@ -31,7 +32,7 @@ class CompanyItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: AppColor.shadowColor.withOpacity(0.1),
+              color: AppColor.secondaryCodGray.withOpacity(0.1),
               spreadRadius: .5,
               blurRadius: 1,
               offset: Offset(0, 1), // changes position of shadow
@@ -63,7 +64,7 @@ class CompanyItem extends StatelessWidget {
             Expanded(
               child: Text(
                 data["type"],
-                style: TextStyle(fontSize: 12, color: AppColor.darker),
+                style: TextStyle(fontSize: 12, color: AppColor.secondarySoftCharcoal),
               ),
             ),
             Visibility(
@@ -71,7 +72,7 @@ class CompanyItem extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: 2,
-                decoration: BoxDecoration(color: AppColor.primary),
+                decoration: BoxDecoration(color: AppColor.primaryMagenta),
               ),
             ),
           ],

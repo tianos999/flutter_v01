@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 import 'custom_image.dart';
 
 class BrokerItem extends StatelessWidget {
@@ -17,7 +17,7 @@ class BrokerItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: AppColor.shadowColor.withOpacity(0.1),
+            color: AppColor.secondaryCodGray.withOpacity(0.1),
             spreadRadius: .5,
             blurRadius: 1,
             offset: Offset(0, 1), // changes position of shadow
@@ -33,7 +33,7 @@ class BrokerItem extends StatelessWidget {
           ),
           Text(
             data["description"],
-            style: TextStyle(height: 1.5, color: AppColor.darker),
+            style: TextStyle(height: 1.5, color: AppColor.secondarySoftCharcoal),
           ),
           const SizedBox(
             height: 10,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 
 class CustomTextBox extends StatelessWidget {
+
   const CustomTextBox({
     Key? key,
     this.hint = "",
@@ -24,12 +25,12 @@ class CustomTextBox extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 3),
       height: 40,
       decoration: BoxDecoration(
-        color: AppColor.textBoxColor,
-        border: Border.all(color: AppColor.textBoxColor),
+        color: AppColor.secondaryDuskyPeriwinkle,
+        border: Border.all(color: AppColor.secondaryDuskyPeriwinkle),
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: AppColor.shadowColor.withOpacity(.05),
+            color: AppColor.secondaryCodGray.withOpacity(.05),
             spreadRadius: .5,
             blurRadius: .5,
             offset: Offset(0, 1), // changes position of shadow

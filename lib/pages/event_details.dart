@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:snack_cart/core/constants/color.dart';
-import 'package:snack_cart/core/utils/data.dart';
-import 'package:snack_cart/presentation/widgets/custom_image.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
+import 'package:snack_cart/core/utils/utils_mixin.dart';
 
 class EventDetailsPage extends StatefulWidget {
   const EventDetailsPage({Key? key}) : super(key: key);
@@ -10,61 +9,18 @@ class EventDetailsPage extends StatefulWidget {
   _EventDetailsPageState createState() => _EventDetailsPageState();
 }
 
-class _EventDetailsPageState extends State<EventDetailsPage> {
+class _EventDetailsPageState extends State<EventDetailsPage> with UtilsMixin {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        SliverAppBar(
-          backgroundColor: AppColor.appBgColor,
-          pinned: true,
-          snap: true,
-          floating: true,
-          title: _buildHeader(),
+        tianosSliverAppBar(
+            data01: 'SPONSORED CONTENT',
+            data02: 'Event details Page',
+            icon: Icons.shopping_cart,
+            onPressed: () {}
         ),
         SliverToBoxAdapter(child: _buildBody())
-      ],
-    );
-  }
-
-  _buildHeader() {
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Hola!",
-                  style: TextStyle(
-                    color: AppColor.darker,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "Alfredo Bringas",
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-            CustomImage(
-              profile,
-              width: 35,
-              height: 35,
-              trBackground: true,
-              borderColor: AppColor.primary,
-              radius: 10,
-            ),
-          ],
-        ),
       ],
     );
   }
@@ -81,7 +37,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                 width: MediaQuery.sizeOf(context).width,
                 height: 338,
                 decoration: BoxDecoration(
-                  color: AppColor.secondary,
+                  color: AppColor.red,
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -91,7 +47,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       width: MediaQuery.sizeOf(context).width,
                       height: 334,
                       decoration: BoxDecoration(
-                        color: AppColor.secondary,
+                        color: AppColor.blue,
                       ),
                       child: Stack(
                         children: [
@@ -141,7 +97,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                       ),
                                       child: Icon(
                                         Icons.arrow_back_ios,
-                                        color: AppColor.primary,
+                                        color: AppColor.primaryMagenta,
                                         size: 20,
                                       ),
                                     ),
@@ -172,7 +128,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                       ),
                                       child: Icon(
                                         Icons.favorite_border,
-                                        color: AppColor.primary,
+                                        color: AppColor.primaryMagenta,
                                         size: 22,
                                       ),
                                     ),
@@ -198,7 +154,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                   width: MediaQuery.sizeOf(context).width,
                   height: 550,
                   decoration: BoxDecoration(
-                    color: AppColor.primary,
+                    color: AppColor.primaryMagenta,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
@@ -532,7 +488,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                     width: 56,
                                     height: 56,
                                     decoration: BoxDecoration(
-                                      color: AppColor.secondary,
+                                      color: AppColor.secondaryMySin,
                                       borderRadius:
                                       BorderRadius.circular(15),
                                       border: Border.all(

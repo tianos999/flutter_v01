@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 import 'package:snack_cart/core/utils/data.dart';
 import 'package:snack_cart/core/utils/utils_mixin.dart';
 import 'package:snack_cart/presentation/widgets/custom_image.dart';
@@ -16,7 +16,7 @@ class _SettingsPageState extends State<SettingsPage> with UtilsMixin {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        tianosAppBar(
+        tianosSliverAppBar(
             data01: 'SPONSORED CONTENT',
             data02: 'Configuración',
             icon: Icons.settings_applications,

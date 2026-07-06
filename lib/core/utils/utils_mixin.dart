@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 
 mixin UtilsMixin {
 
@@ -34,7 +34,7 @@ mixin UtilsMixin {
     );
   }
 
-  SliverAppBar tianosAppBar({required String data01, required String data02, required IconData icon, required Null Function() onPressed}) {
+  SliverAppBar tianosSliverAppBar({required String data01, required String data02, required IconData icon, required Null Function() onPressed}) {
     return SliverAppBar(
       // The height when the user scrolls down completely
       expandedHeight: 10.0,
@@ -49,11 +49,11 @@ mixin UtilsMixin {
       pinned: true,
       snap: true,
       floating: true,
-      title: _tianosAppBarTitle(data01: data01, data02: data02, icon: icon),
+      title: _tianosSliverAppBarTitle(data01: data01, data02: data02, icon: icon),
     );
   }
 
-  _tianosAppBarTitle({required String data01, required String data02, required IconData icon}) {
+  _tianosSliverAppBarTitle({required String data01, required String data02, required IconData icon}) {
     return Container(
       color: Colors.white,
       padding: const EdgeInsets.symmetric(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 import 'package:snack_cart/core/utils/data.dart';
 import 'package:snack_cart/presentation/widgets/custom_textbox.dart';
 import 'package:snack_cart/presentation/widgets/broker_item.dart';
@@ -20,18 +20,17 @@ class _ExplorePageState extends State<ExplorePage> {
     return CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
-          backgroundColor: AppColor.appBgColor,
           pinned: true,
           snap: true,
           floating: true,
-          title: _buildHeader(),
+          title: _buildSearch(),
         ),
         SliverToBoxAdapter(child: _buildBody())
       ],
     );
   }
 
-  _buildHeader() {
+  _buildSearch() {
     return Row(
       children: [
         Expanded(
@@ -45,7 +44,7 @@ class _ExplorePageState extends State<ExplorePage> {
         ),
         IconBox(
           child: Icon(Icons.filter_list_rounded, color: Colors.white),
-          bgColor: AppColor.secondary,
+          bgColor: AppColor.red,
           radius: 10,
         )
       ],

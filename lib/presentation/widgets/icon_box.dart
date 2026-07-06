@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 
 class IconBox extends StatelessWidget {
+
   const IconBox({
     Key? key,
     required this.child,
@@ -29,7 +30,7 @@ class IconBox extends StatelessWidget {
           border: Border.all(color: borderColor),
           boxShadow: [
             BoxShadow(
-              color: AppColor.shadowColor.withOpacity(0.1),
+              color: AppColor.secondaryCodGray.withOpacity(0.1),
               spreadRadius: 1,
               blurRadius: 1,
               offset: Offset(0, 1), // changes position of shadow

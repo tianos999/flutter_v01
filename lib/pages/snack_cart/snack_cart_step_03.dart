@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 import 'package:snack_cart/core/constants/constants.dart';
 import 'package:snack_cart/core/utils/utils_mixin.dart';
 import 'package:snack_cart/presentation/widgets/custom_textbox.dart';
@@ -29,7 +29,7 @@ class _SnackCartStep03State extends State<SnackCartStep03> with UtilsMixin {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        tianosAppBar(
+        tianosSliverAppBar(
             data01: 'SPONSORED CONTENT',
             data02: 'Realizar el pago',
             icon: Icons.check_circle_outline,
@@ -148,7 +148,7 @@ class _SnackCartStep03State extends State<SnackCartStep03> with UtilsMixin {
       label: const Text("Ver mis órdenes"),
       iconAlignment: IconAlignment.end, // Positions icon to the right of text
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.primary, // Background color
+        backgroundColor: AppColor.primaryMagenta, // Background color
         foregroundColor: Colors.white,    // Text and icon color
         padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 12),
         shape: RoundedRectangleBorder(

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 
 import 'custom_image.dart';
 
 class RecommendItem extends StatelessWidget {
+
   const RecommendItem({Key? key, required this.data}) : super(key: key);
   final data;
 
@@ -17,7 +18,7 @@ class RecommendItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: AppColor.shadowColor.withOpacity(0.1),
+            color: AppColor.secondaryCodGray.withOpacity(0.1),
             spreadRadius: 1,
             blurRadius: 1,
             offset: Offset(0, 1), // changes position of shadow

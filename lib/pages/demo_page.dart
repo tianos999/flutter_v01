@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 import 'package:snack_cart/core/network/api_service_user.dart';
 import 'package:snack_cart/core/utils/data.dart';
 import 'package:snack_cart/core/utils/utils_mixin.dart';
@@ -29,56 +29,13 @@ class _DemoPageState extends State<DemoPage> with UtilsMixin {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        SliverAppBar(
-          backgroundColor: AppColor.appBgColor,
-          pinned: true,
-          snap: true,
-          floating: true,
-          title: _buildHeader(),
+        tianosSliverAppBar(
+            data01: 'SPONSORED CONTENT',
+            data02: 'Demo Page',
+            icon: Icons.shopping_cart,
+            onPressed: () {}
         ),
         SliverToBoxAdapter(child: _buildBody())
-      ],
-    );
-  }
-
-  _buildHeader() {
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Hola!",
-                  style: TextStyle(
-                    color: AppColor.darker,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "Alfredo Bringas",
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-            CustomImage(
-              profile,
-              width: 35,
-              height: 35,
-              trBackground: true,
-              borderColor: AppColor.primary,
-              radius: 10,
-            ),
-          ],
-        ),
       ],
     );
   }

@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:snack_cart/core/constants/color.dart';
+import 'package:snack_cart/core/constants/app_color.dart';
 import 'package:snack_cart/core/constants/constants.dart';
 import 'package:snack_cart/core/utils/data.dart';
 import 'package:snack_cart/core/utils/utils_mixin.dart';
@@ -183,7 +183,7 @@ class _HomePageState extends State<HomePage> with UtilsMixin {
           ),
           Text(
             "Ver todo",
-            style: TextStyle(fontSize: 14, color: AppColor.darker),
+            style: TextStyle(fontSize: 14, color: AppColor.secondarySoftCharcoal),
           ),
         ],
       ),
@@ -202,7 +202,7 @@ class _HomePageState extends State<HomePage> with UtilsMixin {
           ),
           Text(
             "Ver todo",
-            style: TextStyle(fontSize: 14, color: AppColor.darker),
+            style: TextStyle(fontSize: 14, color: AppColor.secondarySoftCharcoal),
           ),
         ],
       ),
@@ -221,7 +221,7 @@ class _HomePageState extends State<HomePage> with UtilsMixin {
           ),
           Text(
             "Ver todo",
-            style: TextStyle(fontSize: 14, color: AppColor.darker),
+            style: TextStyle(fontSize: 14, color: AppColor.secondarySoftCharcoal),
           ),
         ],
       ),
@@ -240,32 +240,8 @@ class _HomePageState extends State<HomePage> with UtilsMixin {
           ),
           Text(
             "Ver todo",
-            style: TextStyle(fontSize: 14, color: AppColor.darker),
+            style: TextStyle(fontSize: 14, color: AppColor.secondarySoftCharcoal),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSearch() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Row(
-        children: [
-          Expanded(
-            child: CustomTextBox(
-              hint: "Buscar...",
-              prefix: Icon(Icons.search, color: Colors.grey),
-            ),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          IconBox(
-            child: Icon(Icons.filter_list_rounded, color: Colors.white),
-            bgColor: AppColor.secondary,
-            radius: 10,
-          )
         ],
       ),
     );
