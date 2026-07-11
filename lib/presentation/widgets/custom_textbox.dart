@@ -25,8 +25,8 @@ class CustomTextBox extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 3),
       height: 40,
       decoration: BoxDecoration(
-        color: AppColor.secondaryDuskyPeriwinkle,
-        border: Border.all(color: AppColor.secondaryDuskyPeriwinkle),
+        color: AppColor.yellow_1,
+        border: Border.all(color: AppColor.yellow_1),
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(

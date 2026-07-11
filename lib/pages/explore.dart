@@ -44,7 +44,7 @@ class _ExplorePageState extends State<ExplorePage> {
         ),
         IconBox(
           child: Icon(Icons.filter_list_rounded, color: Colors.white),
-          bgColor: AppColor.red,
+          bgColor: AppColor.secondaryJewelBlue,
           radius: 10,
         )
       ],

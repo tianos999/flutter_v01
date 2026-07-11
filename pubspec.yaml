@@ -47,6 +47,7 @@ dependencies:
   dotted_border: ^3.1.0
   dashed_border: ^1.0.1
   http: ^1.2.0
+  flutter_snake_navigationbar: ^0.6.1
 
 dev_dependencies:
   flutter_test:
@@ -80,10 +81,6 @@ flutter:
     - family: TianosFontShoika
       fonts:
         - asset: assets/fonts/shoika-regular.ttf
-        - asset: assets/fonts/shoika-bold.ttf
-          weight: 700
-        - asset: assets/fonts/shoika-bold-italic.ttf
-          style: italic
         - asset: assets/fonts/shoika-medium.ttf
 
   # To add assets to your application, add an assets section, like this:
@@ -118,21 +115,21 @@ flutter:
   # see https://flutter.dev/to/font-from-package
 
 flutter_native_splash:
-  color: "#333333"
-  image: assets/images/splash_logo_v01.png
-  color_dark: "#1a1a1a"
-  image_dark: assets/images/splash_logo_v01.png
+  image: assets/images/splash_logo_v02.png
+  image_dark: assets/images/splash_logo_v02.png
   android: true
   ios: true
+  color: "#3E4249"         # Light mode background color
+  color_dark: "#3E4249"    # Dark mode background color (optional)
 
-  # add this
+  # Required for Android 12+ compatibility
   android_12:
-    icon_background_color: "#333333"
-    image: assets/images/splash_logo_v01.png
-    icon_background_color_dark: "#1a1a1a"
-    image_dark: assets/images/splash_logo_v01.png
+    icon_background_color: "#3E4249"
+    icon_background_color_dark: "#3E4249"
+    image: assets/images/splash_logo_v02.png
+    image_dark: assets/images/splash_logo_v02.png
 
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/splash_logo_v01.png"
+  image_path: "assets/images/splash_logo_v02.png"

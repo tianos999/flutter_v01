@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:snack_cart/core/constants/constants.dart';
 import 'package:snack_cart/pages/demo_page.dart';
 import 'package:snack_cart/pages/event_details.dart';
@@ -101,82 +102,43 @@ class _RootAppState extends State<RootApp> {
       index: _currentIndex,
       children: List.generate(
         _barItems.length,
-            (index) => _barItems[index]["page"],
+        (index) => _barItems[index]["page"],
       ),
     );
   }
 
   Widget _buildBottomBar() {
 
-    final List<Widget> _bottomBarItemList =  List<Widget>.empty(growable: true);
+    List<BottomNavigationBarItem> itemsList =  List<BottomNavigationBarItem>.empty(growable: true);
 
     for (final (index, item) in _barItems.indexed) {
-      if (_barItems[index]["page"] is SnackCartStep01) {
-        FloatingActionButton floatingActionButton = FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          backgroundColor: AppColor.primaryMagenta,
-          foregroundColor: Colors.white,
-          elevation: 15.0,
-          hoverElevation: 8.0,     // Hovering state shadow
-          highlightElevation: 12.0,// Pressed shadow depth
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
-            side: BorderSide(color: Colors.white, width: 4.0),
-          ),
-          child: const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(Icons.add, color: Colors.white, size: 24, weight: 700.0),
-            ],
-          ),
-        );
-        _bottomBarItemList.add(floatingActionButton);
-      } else {
-        BottomBarItem bottomBarItem = BottomBarItem(
+      BottomNavigationBarItem barItem = BottomNavigationBarItem(
+        icon: Icon(
           _currentIndex == index ? _barItems[index]["active_icon"] : _barItems[index]["icon"],
-          isActive: _currentIndex == index,
-          //activeColor: AppColor.primaryMagenta,
-          onTap: () {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-        );
-        _bottomBarItemList.add(bottomBarItem);
-      }
+        ),
+      );
+
+      itemsList.add(barItem);
 
       if ((index + 1) == Constants.MAX_PAGES) {
         break;
       }
     }
 
-    final BoxDecoration _boxDecoration = BoxDecoration(
-      color: AppColor.secondaryDuskyPeriwinkle,
-      borderRadius: BorderRadius.circular(8),
-      boxShadow: [
-        BoxShadow(
-          color: AppColor.secondaryCodGray.withOpacity(0.1),
-          blurRadius: 1,
-          spreadRadius: 1,
-          offset: Offset(0, 1),
-        )
-      ],
-    );
-
-    return Container(
-      height: 55,
-      width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 15),
-      decoration: _boxDecoration,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: _bottomBarItemList,
-      ),
+    return SnakeNavigationBar.color(
+      currentIndex: _currentIndex,
+      backgroundColor: AppColor.secondaryDuskyPeriwinkle,
+      behaviour: SnakeBarBehaviour.floating,
+      snakeShape: SnakeShape.circle,
+      snakeViewColor: AppColor.primaryMagenta,
+      selectedItemColor: AppColor.secondaryCodGray,
+      unselectedItemColor: Colors.white,
+      items: itemsList,
+      onTap: (index) {
+        setState(() {
+          _currentIndex = index;
+        });
+      },
     );
   }
 
@@ -209,13 +171,13 @@ class _RootAppState extends State<RootApp> {
       actions: [
         IconButton(
           icon: const Icon(Icons.notifications),
-          color: AppColor.secondaryCodGray,
+          color: Colors.white,
           onPressed: () {
             debugPrint('Notifications pressed');
           },
         ),
         PopupMenuButton<String>(
-          iconColor: AppColor.secondaryCodGray,
+          iconColor: Colors.white,
           onSelected: (value) {
             debugPrint('Selected: $value');
           },
